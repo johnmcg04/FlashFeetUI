@@ -16,3 +16,4 @@ jobs:
 
       - name: Get the New Version
         run: echo "New version is ${{ steps. increment-git-tag.outputs.new-version 33"
+
