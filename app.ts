@@ -1,6 +1,4 @@
 import { Response, Request } from 'express';
-import { Product } from './model/product';
-import { ProductSession } from './model/ProductSession';
 
 const express = require('express');
 const path = require("path");
@@ -44,7 +42,6 @@ app.use(session(
 
 declare module "express-session" {
     interface SessionData{
-        product: Product;
         token: String;
     }
     
