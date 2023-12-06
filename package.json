@@ -6,8 +6,9 @@
   "scripts": {
     "start": "npx tsc && cp -R views dist && node dist/app.js",
     "make-pretty": "prettier --write '**/*.{js, jsx, ts, tsx}'",
-    "lint": "eslint .",
+    "eslint:github-action": "node ./node_modules/eslint/bin/eslint . --ignore-path .gitignore --max-warnings 0",
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "",
   "license": "ISC",
