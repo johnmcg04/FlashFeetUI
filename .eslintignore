@@ -1,7 +1,7 @@
 /dist/*
 
-/eslintrc.js
+*/eslintrc.js
 
-/index.js
+*/index.js
 
-/app.ts
+*/app.ts
