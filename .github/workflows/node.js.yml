@@ -1,14 +1,41 @@
 name: Lint
-on: [push]
+
+
+on:
+  push:
+    branches: [ main, 001-view-job-roles ]
+  pull_request:
+    branches: [ main, 001-view-job-roles ]
+
+
 jobs:
   build:
-    name: Test
-    runs-on: ubuntu-latest
+   runs-on: ubuntu-latest
+
+
+   strategy:
+      matrix:
+        node-version: [14.x]
+
+    
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout code
       - uses: actions/checkout@v3
         with:
           cmd: install 
+
       - uses: actions/checkout@v3
         with:
           cmd: eslint:github-action
+
+      - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+          
+    
+    - name: Install dependencies
+      run:
+        npm install
