@@ -23,22 +23,12 @@
                     <thead>
                         <tr>
                             <th scope="col">JobRole</th>
-                            <th scope="col">JobSpecification</th>
-                            <th scope="col">Capability</th>
-                            <th scope="col">BandLevel</th>
-                            <th scope="col">JobFamily</th>
-                            <th scope="col">Responsibilities</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for jobroles in jobroles %}
                         <tr>
                             <td>{{ jobroles.jobRole }}</td>
-                            <td>{{ jobroles.jobSpecification }}</td>
-                            <td>{{ jobroles.Capability }}</td>
-                            <td>{{ jobroles.bandLevel }}</td>
-                            <td>{{ jobroles.jobFamily}}</td>
-                            <td>{{ jobroles.responsibilities}}</td>
                             <td><a href='jobroles/{{ jobroles.jobroles }}'>View</a></td>
                         </tr>
                         {% endfor %}
