@@ -1,0 +1,11 @@
+Pull Request Checklist
+
+
+Please follow all these rules before merging your branch.
+
+ Must reference a ticket
+ Must implement tests where appropirate
+ Must have useful documentation
+ Must adhere to the naming conventions
+ Must not commit confidential information
+Once all requirements above are fulfilled, your pull request has no merge conflicts, and you have two approvals from the approved approvers, then it can be tested and signed off.
