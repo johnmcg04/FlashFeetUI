@@ -1,15 +1,17 @@
 import { Application, Request, Response } from "express";
-import { JobRole } from "../service/model/jobrole";
+import { Capability } from "../service/model/Capability";
 
-const jobroleService = require('../service/jobroleService')
+const capabilityService = require('../service/CapabilityService')
+
+
 
 module.exports = function(app: Application){
 
     app.get('/jobroles', async (req: Request, res: Response) => {
-        let data: JobRole[]
+        let data: Capability[]
 
         try {
-            data = await jobroleService.getJobroles()
+            data = await capabilityService.getCapability()
             console.log(data)
         } catch (e) {
             console.error(e);

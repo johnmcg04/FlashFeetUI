@@ -34,6 +34,20 @@
                         {% endfor %}
 
                     </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col">Capability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for capability in capability %}
+                        <tr>
+                            <td>{{ capability.capability }}</td>
+                            <td><a href='jobroles/{{ capability.capability }}'>View</a></td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
                 </table>
                 {% else %}
                 There are no job roles.
