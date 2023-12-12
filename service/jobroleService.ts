@@ -5,7 +5,7 @@ const productValidator = require('../validator/jobroleValidator')
 
 module.exports.getJobroles = async function (): Promise<JobRole[]> {
     try {
-        const response = await axios.get('http://localhost:8080/api/jobroles')
+        const response = await axios.get('http://localhost:8080/api/job-role-list')
 
         return response.data
     } catch (e) {
