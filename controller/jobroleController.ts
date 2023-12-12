@@ -10,9 +10,10 @@ module.exports = function(app: Application){
 
         try {
             data = await jobroleService.getJobroles()
+            console.log(data)
         } catch (e) {
             console.error(e);
         }
 
-        res.render('list-job-role', { jobrole: data })
+        res.render('list-job-roles', { jobroles: data })
     })}

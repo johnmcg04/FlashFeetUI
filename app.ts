@@ -28,3 +28,5 @@ app.listen(3000, () => {
 app.get("/", (req: Request, res: Response) => {
     res.render("index");
 });
+
+require('./controller/jobroleController')(app)
