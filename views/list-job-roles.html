@@ -22,8 +22,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">JobRole</th>
+                            <th scope="col">JobRole</th>    <th scope="col">Capability</th>
                         </tr>
+                        
                     </thead>
                     <tbody>
                         {% for jobroles in jobroles %}
@@ -32,21 +33,6 @@
                             <td><a href='jobroles/{{ jobroles.jobroles }}'>View</a></td>
                         </tr>
                         {% endfor %}
-
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th scope="col">Capability</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for capability in capability %}
-                        <tr>
-                            <td>{{ capability.capability }}</td>
-                            <td><a href='jobroles/{{ capability.capability }}'>View</a></td>
-                        </tr>
-                        {% endfor %}
-
                     </tbody>
                 </table>
                 {% else %}
