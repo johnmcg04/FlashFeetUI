@@ -2,7 +2,8 @@ export class JobRole {
     jobRole: string;
     specification: string;
     capability?: string;
-    bandName?: string;
+    bandLevel?: string;
+    jobFamily?: string;
     responsibilities: string;
     sharepointLink: string;
 }
