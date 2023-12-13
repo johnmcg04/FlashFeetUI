@@ -19,9 +19,37 @@
             <section id="addNewJobTitleHeader" class="mt-4">
                 <h2>Please confirm the following information is correct</h2>
             </section>
-
-            
-
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    {% if errormessage %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ errormessage }}
+                    </div>
+                    {% endif %}
+                    <form action="/7confirm-new-job-role" method="post">
+                        <div class="form-group">
+                            <label for="Job role name">jobRole: {{ jobrole }}</label>
+                        </div>
+                        <div>
+                            <label for="Specification">Specification: {{ specification }}</label>
+                        </div>
+                        <div>
+                            <label for="Capability">Capability: {{ capability }}</label>
+                        </div>
+                        <div>
+                            <label for="Band-level">BandLevel: {{ bandLevel }}</label>
+                        </div>
+                        <div>
+                            <label for="Job family">JobFamily: {{ jobFamily }}</label>
+                        </div>
+                        <div>
+                            <label for="Responsibilities">Responsibilities: {{ responsibilities }}</label>
+                        </div class="container">
+                        <button type="submit" class="btn btn-primary">Confirm Job Role</button>
+                        
+                    </form>
+                </div>
+            </section>
 
         </main>
     </body>
