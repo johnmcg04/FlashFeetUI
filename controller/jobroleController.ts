@@ -9,7 +9,7 @@ module.exports = function(app: Application){
         let data: JobRole[]
 
         try {
-            data = await jobroleService.getJobroles()
+            data = await jobroleService.getAllJobroles()
             console.log(data)
         } catch (e) {
             console.error(e);
@@ -18,3 +18,5 @@ module.exports = function(app: Application){
         res.render('list-job-roles', {jobroles:data})
     })
 }
+
+

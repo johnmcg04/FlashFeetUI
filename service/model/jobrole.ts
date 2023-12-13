@@ -1,4 +1,8 @@
 export class JobRole {
-    jobRole?: string
-    capability?: string
+    roleName: string;
+    specification: string;
+    capabilityName?: string;
+    bandName?: string;
+    responsibilities: string;
+    sharepointLink: string;
 }
