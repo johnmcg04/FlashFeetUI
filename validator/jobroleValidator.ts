@@ -5,5 +5,9 @@ module.exports.validateJobrole = function (jobrole: JobRole): string {
         return "Job role greater than 50 characters";
     }
 
+    if (jobrole.jobSpecification.length > 70) {
+        return "Desciption greater than 70 characters";
+    }
+
     return null
 }
