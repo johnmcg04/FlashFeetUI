@@ -15,8 +15,6 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
 
 module.exports.deleteJobRole = async function (jobRole: String) {
     try {
-        console.log('before delete')
-        console.log(jobRole)
         const response = await axios.delete('http://localhost:8080/api/delete-job-role/' + jobRole)
 
         return response.data
