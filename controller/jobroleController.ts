@@ -14,3 +14,5 @@ module.exports = function(app: Application){
 
         res.render('list-job-roles', { jobroles: data })
     })}
+
+    
