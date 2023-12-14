@@ -23,6 +23,7 @@
                     <thead>
                         <tr>
                             <th scope="col">JobRole</th>
+                            <th scope="col">JobSpecification</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +31,8 @@
                         <tr>
                             <td>{{ jobroles.jobRole }}</td>
                             <td><a href='jobroles/{{ jobroles.jobroles }}'>View</a></td>
+                            <td>{{ jobroles.jobSpecification }}</td>
+                            <td><a href="jobroles/{{ jobroles.jobSpecification }}">View</a></td>
                         </tr>
                         {% endfor %}
 
