@@ -15,6 +15,6 @@ module.exports = function(app: Application){
             console.error(e);
         }
 
-        res.render('list-job-roles')
+        res.render('list-job-roles', {jobroles : data})
     })
 }
