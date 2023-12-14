@@ -26,6 +26,9 @@ module.exports = function(app: Application){
         } catch (e) {
             console.error(e);
         }
+      
+        res.render('list-job-roles', {jobroles:data})
+
 
         res.render('delete-job-role', {
             jobroles: data,
@@ -48,5 +51,6 @@ module.exports = function(app: Application){
 
             res.render('delete-job-role')
         }
+
     })
 }
