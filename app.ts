@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { JobRole } from "./model/jobrole";
 
+
 const express = require("express");
 const path = require("path");
 const nunjucks = require("nunjucks");
@@ -24,12 +25,7 @@ app.set("view engine", "html");
 declare module "express-session" {
     interface SessionData{
         jobrole: JobRole;
-        specification: string;
-        capability?: string;
-        bandLevel?: string;
-        jobFamily?: string;
-        responsibilities: string;
-        sharepointLink: string;
+        
     }
     
 }

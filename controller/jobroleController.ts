@@ -1,5 +1,9 @@
 import { Application, Request, Response } from "express";
 import { JobRole } from "../model/jobrole";
+import axios from 'axios';
+
+
+
 
 const jobroleService = require('../service/jobroleService')
 
@@ -116,7 +120,6 @@ module.exports = function(app: Application){
 
             jobrole = await jobroleService.createNewJobRole(data)
             //console.log(jobrole)
-            //console.log("still on stack")
 
             req.session.jobrole = undefined
 

@@ -16,13 +16,24 @@
             </div>
         </header>
         <main class="container mt-4">
-            <section id="addNewJobTitleHeader" class="mt-4">
-                <h2>Select From The Drop-Down List The Capability Of The New Job Role</h2>
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Choose The Capability Of The New Job Role</p>
+                    <form action="/3choose-capability" method="post">
+                        <div class="form-group">
+                            <label for="capability">Job Specification</label>
+                            <input type="text" id="capability" name="capability" class="form-control" value="{{ capability }}" required>
+                        </div>
+                        
+                        <select name="capabilities">
+                            {% for capability in capabilities %}
+                                <option value="{{capability}}">{{capability}}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </form>
+                </div>
             </section>
-
-            
-
-
         </main>
     </body>
 </html>

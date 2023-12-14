@@ -16,13 +16,18 @@
             </div>
         </header>
         <main class="container mt-4">
-            <section id="addNewJobTitleHeader" class="mt-4">
-                <h2>Add The Name Of The New Job Role</h2>
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Add The Name Of The New Job Role</p>
+                    <form action="/1add-new-job-role" method="post">
+                        <div class="form-group">
+                            <label for="jobRole">Job Role</label>
+                            <input type="text" id="jobRole" name="jobRole" class="form-control" value="{{ jobRole }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
             </section>
-
-            
-
-
         </main>
     </body>
 </html>

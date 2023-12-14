@@ -16,10 +16,18 @@
             </div>
         </header>
         <main class="container mt-4">
-            <section id="addNewJobTitleHeader" class="mt-4">
-                <h2>Add The Specification Of The New Job Role</h2>
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Add The Specification Of The New Job Role</p>
+                    <form action="/2add-new-job-role-specification" method="post">
+                        <div class="form-group">
+                            <label for="specification">Job Specification</label>
+                            <input type="text" id="specification" name="specification" class="form-control" value="{{ specification }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
             </section>
-
         </main>
     </body>
 </html>
