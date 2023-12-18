@@ -17,8 +17,8 @@ module.exports.validateJobrole = function (jobrole: JobRole): string {
         return "Band Level greater than 70 characters"
     }
 
-    if (jobrole.jobFamily.length > 70) {
-        return "Job Family greater than 70 characters"
+    if (jobrole.jobResponsibilities.length > 100) {
+        return "Job Responsibilities greater than 100 characters"
     }
 
     return null

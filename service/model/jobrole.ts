@@ -3,5 +3,5 @@ export class JobRole {
     jobSpecification?: string
     jobCapability?: string
     jobBandLevel?: string
-    jobFamily?: string
+    jobResponsibilities?: string
 }
