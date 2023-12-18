@@ -16,13 +16,22 @@
             </div>
         </header>
         <main class="container mt-4">
-            <section id="addNewJobTitleHeader" class="mt-4">
-                <h2>Select From The Drop-Down List The Band Level Of The New Job Role</h2>
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Choose The Band Level Of The New Job Role</p>
+                    <form id="chooseBandLevel" action="/4choose-band-level" method="post">
+                        <div class="form-group">
+                            <label for="BandLevel">Band Level</label>
+                            <select id="bandlevel" name="bandlevel" class="form-control" required>
+                                {% for bandlevel in bandlevels  %}
+                                    <option value="{{ jobrole.bandlevel }}">{{ jobrole.bandlevel }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
             </section>
-
-            
-
-
         </main>
     </body>
 </html>

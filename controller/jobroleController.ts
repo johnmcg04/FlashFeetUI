@@ -3,6 +3,8 @@ import { JobRole } from "../model/jobrole";
 import axios from 'axios';
 
 const jobroleService = require('../service/jobroleService')
+const bandLevelService = require('../service/bandLevelService')
+const capabilityService = require('../service/capabilityService')
 
 module.exports = function(app: Application){
 
@@ -20,8 +22,8 @@ module.exports = function(app: Application){
 
 
     app.get('/1add-new-job-role', async (req: Request, res: Response) => {
-        
-        if(!req.session.jobrole){
+
+        if (!req.session.jobrole) {
             req.session.jobrole = {}
         }
 
@@ -31,7 +33,7 @@ module.exports = function(app: Application){
 
     app.post('/1add-new-job-role', async (req: Request, res: Response) => {
   
-        req.session.jobrole["jobRole"] = req.body.jobrole
+        req.session.jobrole["jobRole"] = req.body.jobRole
 
         res.redirect('/2add-new-job-role-specification')
     })
@@ -51,9 +53,17 @@ module.exports = function(app: Application){
     })
 
     app.get('/3choose-capability', async (req: Request, res: Response) => {
+        let data: String;
 
-        res.render('3choose-capability')
-
+        try {
+            data = await capabilityService.getCapabilities();
+        } catch (e) {
+            console.error(e);
+        }
+      
+        res.render('3choose-capability', {
+            capability:data
+        })
     })
 
     app.post('/3choose-capability', async (req: Request, res: Response) => {
@@ -65,9 +75,17 @@ module.exports = function(app: Application){
     })
 
     app.get('/4choose-band-level', async (req: Request, res: Response) => {
+        let data: String;
 
-        res.render('4choose-band-level')
-
+        try {
+            data = await bandLevelService.getBandLevels();
+        } catch (e) {
+            console.error(e);
+        }
+      
+        res.render('4choose-band-level', {
+            capability:data
+        })
     })
 
     app.post('/4choose-band-level', async (req: Request, res: Response) => {
@@ -79,8 +97,17 @@ module.exports = function(app: Application){
     })
 
     app.get('/5choose-job-family', async (req: Request, res: Response) => {
+        let data: String;
 
-        res.render('5choose-job-family')
+        try {
+            data = await jobroleService.getBandLevels();
+        } catch (e) {
+            console.error(e);
+        }
+      
+        res.render('5choose-job-family', {
+            jobrole:data
+        })
 
     })
 
@@ -115,7 +142,6 @@ module.exports = function(app: Application){
         try{
 
             jobrole = await jobroleService.createNewJobRole(data)
-            //console.log(jobrole)
 
             req.session.jobrole = undefined
 
@@ -162,9 +188,6 @@ module.exports = function(app: Application){
             console.error(e);
         }
       
-        res.render('list-job-roles', {jobroles:data})
-
-
         res.render('delete-job-role', {
             jobroles: data,
         })

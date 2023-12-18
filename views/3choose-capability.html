@@ -19,18 +19,16 @@
             <section id="form" class="bg-light py-5">
                 <div class="container">
                     <p>Choose The Capability Of The New Job Role</p>
-                    <form action="/3choose-capability" method="post">
+                    <form id="chooseCapability" action="/3choose-capability" method="post">
                         <div class="form-group">
-                            <label for="capability">Job Specification</label>
-                            <input type="text" id="capability" name="capability" class="form-control" value="{{ capability }}" required>
+                            <label for="Capability">Capability</label>
+                            <select id="capability" name="capability" class="form-control" required>
+                                {% for capability in capabilities  %}
+                                    <option value="{{ jobrole.capability }}">{{ jobrole.capability }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
-                        
-                        <select name="capabilities">
-                            {% for capability in capabilities %}
-                                <option value="{{capability}}">{{capability}}</option>
-                            {% endfor %}
-                        </select>
-                        
+                        <button type="submit" class="btn btn-primary">Next</button>
                     </form>
                 </div>
             </section>

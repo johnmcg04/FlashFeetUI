@@ -13,16 +13,6 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
     }
 } 
 
-module.exports.getCapabilities = async function (): Promise<JobRole[]> {
-    try {
-        const response = await axios.get('http://localhost:8080/api/capabilities-list')
-
-        return response.data
-    } catch (e) {
-        throw new Error('Could not get job capabilities')
-    }
-} 
-
 module.exports.deleteJobRole = async function (jobRole: String) {
     try {
         const response = await axios.delete('http://localhost:8080/api/delete-job-role/' + jobRole)
