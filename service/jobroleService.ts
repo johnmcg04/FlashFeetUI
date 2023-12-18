@@ -1,7 +1,6 @@
-import { JobRole } from "./model/jobrole";
-
 const axios = require('axios');
-const productValidator = require('../validator/jobroleValidator')
+
+import { JobRole } from "../model/jobrole";
 
 module.exports.getJobroles = async function (): Promise<JobRole[]> {
     try {
@@ -11,4 +10,4 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
     } catch (e) {
         throw new Error('Could not get job roles')
     }
-} 
+}

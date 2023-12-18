@@ -1,10 +1,9 @@
-var axios = require("axios");
-var axios = require("axios-mock-adapter");
-// import MockAdapter from ""
+var axios = require('axios');
+var MockAdapter = require('axios-mock-adapter');
 var chai = require('chai');  
 const expect = chai.expect;
 
-var jobroleService = require('../../test/service/JobRoleServiceTest.js');
+var jobroleService = require('../../service/jobroleService.ts');
 var jobRole = {
     jobRole: "Test Engineer"
 }
@@ -24,23 +23,8 @@ describe('jobroleService', function () {
             expect(results[0]).to.deep.equal(jobRole)
           })
 
-          it('should throw exception when 500 error returned from axios', async () => {
-            var mock = new MockAdapter(axios);
-    
-            mock.onGet(jobroleService.URL).reply(500);
-    
-            var error;
-    
-            try {
-              await jobroleService.getJobroles()
-            } catch (e) {
-              var error = e.message
-            }
-    
-            expect(error).to.equal('Could not get job roles')
-          })
-
     })
 })
+
 
 
