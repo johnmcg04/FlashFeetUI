@@ -10,7 +10,11 @@ module.exports.validateJobrole = function (jobrole: JobRole): string {
     }
 
     if (jobrole.jobCapability.length > 30) {
-        return "Capability greater than 30 characters"
+        return "Capability greater than 30 characters";
+    }
+
+    if (jobrole.jobBandLevel.length > 70) {
+        return "Band Level greater than 100 characters"
     }
 
     return null
