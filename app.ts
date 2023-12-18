@@ -43,4 +43,6 @@ app.get("/", (req: Request, res: Response) => {
     res.render("index");
 });
 
+
 require('./controller/jobroleController')(app)
+
