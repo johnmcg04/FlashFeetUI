@@ -1,7 +1,8 @@
 import { JobRole } from "../model/jobrole";
 
+
 const axios = require('axios');
-const productValidator = require('../validator/jobroleValidator')
+
 
 module.exports.getJobroles = async function (): Promise<JobRole[]> {
     try {
@@ -11,6 +12,7 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
     } catch (e) {
         throw new Error('Could not get job roles')
     }
+
 } 
 
 module.exports.deleteJobRole = async function (jobRole: String) {
@@ -21,4 +23,5 @@ module.exports.deleteJobRole = async function (jobRole: String) {
     } catch (e) {
         throw new Error('Could not delete job role')
     }
+
 }
