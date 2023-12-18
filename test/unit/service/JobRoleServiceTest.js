@@ -3,7 +3,7 @@ var MockAdapter = require('axios-mock-adapter');
 var chai = require('chai');  
 const expect = chai.expect;
 
-var jobroleService = require('../../../service/jobroleService.js');
+var jobroleService = require('../../../dist/service/jobroleService.js');
 var jobRole = {
     jobRole: "Test Engineer"
 }
