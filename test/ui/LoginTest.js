@@ -56,8 +56,8 @@ describe("Login Flow Test", () => {
         try {
             await driver.get("http://localhost:3000/login");
 
-            await driver.findElement(By.id("username")).sendKeys(employeeEmail);
-            await driver.findElement(By.id("password")).sendKeys(employeePassword); 
+            await driver.findElement(By.id("username")).sendKeys(username);
+            await driver.findElement(By.id("password")).sendKeys(password); 
             await driver.findElement(By.id("btnLogin")).click();
 
             let currentURL = await driver.getCurrentUrl();
