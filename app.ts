@@ -1,46 +1,65 @@
-import { Request, Response } from "express";
-import { JobRole } from "./model/jobrole";
+import { Response, Request } from 'express';
+import { JobRole } from './model/jobrole';
 
-const express = require("express");
+const express = require('express');
 const path = require("path");
 const nunjucks = require("nunjucks");
+const { title } = require('process');
+const session = require('express-session');
+
+
 
 const app = express();
 
+//configure nunjucks
+let appViews = path.join(__dirname, '/views/');
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
- 
-app.use(express.json())
- 
-app.use(express.urlencoded({ extended: true}))
-
-declare module "express-session" {
-    interface SessionData {
-        jobRole: JobRole
-    }
-}
-
-// Configure Nunjucks
-const appViews = path.join(__dirname, "/views/");
-
-const nunjucksConfig = {
+let nunjucksConfig = {
     autoescape: true,
     noCache: true,
     express: app
 };
 
+
 nunjucks.configure(appViews, nunjucksConfig);
 
-// Configure Express
-app.set("view engine", "html");
+//configure express
+
+app.set('view engine', 'html');
+
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(session(
+        {   
+            secret:'not hard coded secret', 
+            cookie:{ maxAge: 60000 }
+        }
+    )
+);
+
+declare module "express-session" {
+    interface SessionData{
+        jobrole: JobRole;
+        token: String;
+    }
+    
+}
 
 app.listen(3000, () => {
     console.log("Server listening on port 3000");
 });
 
-// Express Routes
-app.get("/", (req: Request, res: Response) => {
-    res.render("index");
+//express routes
+
+app.get('/', (req: Request, res: Response) => {
+    res.render("academyExperience", {
+        title: 'Academy title',
+    });     
 });
 
-require('./controller/jobroleController')(app)
+require('./Controller/jobroleController')(app);
+require('./Controller/authController')(app);
