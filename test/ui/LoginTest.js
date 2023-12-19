@@ -9,25 +9,29 @@ describe('Login Page', function() {
 
     before(async function() {
         driver = new webdriver.Builder().forBrowser('chrome').build();
-        page = await driver.get('http://localhost:3000/login'); // Replace with your login page URL
+        page = await driver.get('http://localhost:3000/login'); 
     });
 
     it('should have the correct title', async function() {
         const title = await driver.getTitle();
-        expect(title).to.equal('Login'); // Replace with your login page title
+        expect(title).to.equal('Login'); 
     });
 
     it('should allow user to login with valid credentials', async function() {
-        const usernameInput = await driver.findElement(webdriver.By.id('username')); // Replace with your username input field's id
-        const passwordInput = await driver.findElement(webdriver.By.id('password')); // Replace with your password input field's id
-        const loginButton = await driver.findElement(webdriver.By.id('login')); // Replace with your login button's id
-
-        await usernameInput.sendKeys('testuser');
-        await passwordInput.sendKeys('testpass');
+        const usernameInput = await driver.findElement(webdriver.By.id('username')); 
+        const passwordInput = await driver.findElement(webdriver.By.id('password')); 
+        const loginButton = await driver.findElement(webdriver.By.id('submit')); 
+        
+        await usernameInput.sendKeys('dummy');
+        await passwordInput.sendKeys('password');
         await loginButton.click();
 
-        const welcomeMessage = await driver.findElement(webdriver.By.id('welcome')).getText(); // Replace with the id of the element showing a welcome message or similar upon successful login
-        expect(welcomeMessage).to.include('Welcome, testuser!');
+
+        await driver.wait(webdriver.until.urlContains('/jobroles'), 5000);
+
+        // Check that the current URL contains '/jobroles'
+        const currentUrl = await driver.getCurrentUrl();
+        expect(currentUrl).to.include('/jobroles');
     });
 
     after(async function() {
