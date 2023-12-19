@@ -20,7 +20,7 @@ module.exports = function(app: Application) {
         }
         catch(e){
             console.log(e)
-
+            
             res.locals.errormessage = e.message
 
             res.render('login', req.body)
