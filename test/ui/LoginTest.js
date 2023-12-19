@@ -4,7 +4,7 @@ const chai = require("chai");
 const expect = chai.expect;
 
 
-describe("Login Flow Test", () => {
+describe("Login Test", () => {
     it("Should display error for non-existent user login", async () => {
         let driver = await new Builder().forBrowser("chrome").build();
 
@@ -66,6 +66,6 @@ describe("Login Flow Test", () => {
         } finally {
             await driver.quit();
         }
-    }).timeout(30000); 
+    }).timeout(25000); 
 });
 
