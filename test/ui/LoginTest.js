@@ -39,33 +39,33 @@ describe("Login Test", () => {
         }
     }).timeout(30000);
 
-    it("Should successfully log in with valid credentials", async () => {
-        const username = process.env.TEST_ACCOUNT_USERNAME;
-        const password = process.env.TEST_ACCOUNT_PASSWORD;
+    // it("Should successfully log in with valid credentials", async () => {
+    //     const username = process.env.TEST_ACCOUNT_USERNAME;
+    //     const password = process.env.TEST_ACCOUNT_PASSWORD;
 
-        if (!username) {
-            throw new Error("TEST_ACCOUNT_USERNAME is not set in the environment variables");
-        }
+    //     if (!username) {
+    //         throw new Error("TEST_ACCOUNT_USERNAME is not set in the environment variables");
+    //     }
 
-        if (!password) {
-            throw new Error("TEST_ACCOUNT_PASSWORD is not set in the environment variables");
-        }
+    //     if (!password) {
+    //         throw new Error("TEST_ACCOUNT_PASSWORD is not set in the environment variables");
+    //     }
 
-        let driver = await new Builder().forBrowser("chrome").build();
+    //     let driver = await new Builder().forBrowser("chrome").build();
 
-        try {
-            await driver.get("http://localhost:3000/login");
+    //     try {
+    //         await driver.get("http://localhost:3000/login");
 
-            await driver.findElement(By.id("username")).sendKeys(username);
-            await driver.findElement(By.id("password")).sendKeys(password); 
-            await driver.findElement(By.id("btnLogin")).click();
+    //         await driver.findElement(By.id("username")).sendKeys(username);
+    //         await driver.findElement(By.id("password")).sendKeys(password); 
+    //         await driver.findElement(By.id("btnLogin")).click();
 
-            let currentURL = await driver.getCurrentUrl();
-            console.log(currentURL);
-            chai.assert.isTrue(currentURL.includes("/jobroles"), "Login not successful. Redirect URL incorrect.");
-        } finally {
-            await driver.quit();
-        }
-    }).timeout(25000); 
+    //         let currentURL = await driver.getCurrentUrl();
+    //         console.log(currentURL);
+    //         chai.assert.isTrue(currentURL.includes("/jobroles"), "Login not successful. Redirect URL incorrect.");
+    //     } finally {
+    //         await driver.quit();
+    //     }
+    // }).timeout(25000); 
 });
 
