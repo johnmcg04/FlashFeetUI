@@ -6,7 +6,7 @@ const jobroleService = require('../service/jobroleService')
 module.exports = function(app: Application){
 
     app.get('/jobroles', async (req: Request, res: Response) => {
-        let data: JobRole[]
+        let data: JobRole[];
 
             data = await jobroleService.getJobroles()
         
@@ -22,9 +22,6 @@ module.exports = function(app: Application){
         } catch (e) {
             console.error(e);
         }
-      
-        res.render('list-job-roles', {jobroles:data})
-
 
         res.render('delete-job-role', {
             jobroles: data,

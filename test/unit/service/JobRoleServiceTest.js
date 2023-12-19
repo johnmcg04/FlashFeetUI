@@ -9,6 +9,21 @@ var jobRole = {
 }
 
 describe('jobroleService', function () {
+
+    describe('deleteJobRole', function () {
+
+        it('should delete a specified job role from response', async () => {
+            var mock = new MockAdapter(axios);
+
+            const data = [jobRole];
+
+            mock.onDelete(jobroleService.URL).reply(200, data);
+
+            var results = await jobroleService.deleteJobRole();
+        })
+    })
+
+
     describe('getJobRoles', function () {
 
         it('should return job roles from response', async () => {
@@ -25,6 +40,4 @@ describe('jobroleService', function () {
 
     })
 })
-
-
 
