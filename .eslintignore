@@ -1,0 +1,9 @@
+/dist/*
+
+*/eslintrc.js
+
+*/index.js
+
+*/app.ts
+
+test/unit/service/JobRoleServiceTest.js
