@@ -6,6 +6,7 @@ const path = require("path");
 const nunjucks = require("nunjucks");
 const { title } = require('process');
 const session = require('express-session');
+const sessionSecret = process.env.SESSION_SECRET;
 
 
 
@@ -33,6 +34,11 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+console.log(sessionSecret);
+if(!sessionSecret) {
+    throw new Error("SESSION_SECRET environment variable is not set");
+}
+
 app.use(session(
         {   
             secret:'not hard coded secret', 
@@ -43,8 +49,8 @@ app.use(session(
 
 declare module "express-session" {
     interface SessionData{
-        jobrole: JobRole;
-        token: String;
+        token: string;
+        
     }
     
 }
@@ -56,10 +62,14 @@ app.listen(3000, () => {
 //express routes
 
 app.get('/', (req: Request, res: Response) => {
-    res.render("academyExperience", {
-        title: 'Academy title',
+    res.render("login", {
+        title: 'Login',
     });     
 });
 
 require('./Controller/jobroleController')(app);
+
+const authMiddleware = require("./middleware/auth");
+app.use(authMiddleware);
+
 require('./Controller/authController')(app);
