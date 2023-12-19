@@ -9,7 +9,7 @@ module.exports = function(app: Application){
         let data: JobRole[]
 
         try {
-            data = await jobroleService.getAllJobroles()
+            data = await jobroleService.getJobroles()
             console.log(data)
         } catch (e) {
             console.error(e);
