@@ -1,0 +1,49 @@
+name: NodeCICD.js CI
+
+on:
+  push:
+    branches: ["main","Pre-Production"]
+      
+  pull_request: 
+    branches: ["main","Pre-Production"]
+
+env:
+  SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+  TEST_ADMIN_ACCOUNT_EMAIL: ${{ secrets.TEST_ADMIN_ACCOUNT_EMAIL }}
+  TEST_ADMIN_ACCOUNT_PASSWORD: ${{ secrets.TEST_ADMIN_ACCOUNT_PASSWORD }}
+  TEST_EMPLOYEE_ACCOUNT_EMAIL: ${{ secrets.TEST_EMPLOYEE_ACCOUNT_EMAIL }}
+  TEST_EMPLOYEE_ACCOUNT_PASSWORD: ${{ secrets.TEST_EMPLOYEE_ACCOUNT_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run:
+        npm install
+
+    - name: Run frontend
+      run:
+        npm start &
+
+    - name: Run unit tests
+      run:
+        npm test
+
+    - name: Run linter
+      run:
+        npm run lint
