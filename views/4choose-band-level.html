@@ -22,9 +22,9 @@
                     <form id="chooseBandLevel" action="/4choose-band-level" method="post">
                         <div class="form-group">
                             <label for="BandLevel">Band Level</label>
-                            <select id="bandlevel" name="bandlevel" class="form-control" required>
-                                {% for bandlevel in bandlevels  %}
-                                    <option value="{{ jobrole.bandlevel }}">{{ jobrole.bandlevel }}</option>
+                            <select id="bandLevel" name="bandLevel" class="form-control" required>
+                                {% for bandLevel in bandLevels  %}
+                                    <option value="{{ bandLevel.bandLevel }}">{{ bandLevel.bandLevel }}</option>
                                 {% endfor %}
                             </select>
                         </div>

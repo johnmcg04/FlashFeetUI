@@ -1,10 +1,13 @@
 import { Application, Request, Response } from "express";
 import { JobRole } from "../model/jobrole";
 import axios from 'axios';
+import { Capability } from "../model/capability";
+import { BandLevel } from "../model/bandLevel";
 
 const jobroleService = require('../service/jobroleService')
 const bandLevelService = require('../service/bandLevelService')
 const capabilityService = require('../service/capabilityService')
+
 
 module.exports = function(app: Application){
 
@@ -35,7 +38,21 @@ module.exports = function(app: Application){
   
         req.session.jobrole["jobRole"] = req.body.jobRole
 
+        res.redirect('/add-new-job-spec-summary')
+    })
+
+    app.get('/add-new-job-spec-summary', async (req: Request, res: Response) => {
+
+        res.render('add-new-job-spec-summary')
+
+    })
+
+    app.post('/add-new-job-spec-summary', async (req: Request, res: Response) => {
+  
+        req.session.jobrole["jobSpecSummary"] = req.body.jobSpecSummary
+
         res.redirect('/2add-new-job-role-specification')
+
     })
 
     app.get('/2add-new-job-role-specification', async (req: Request, res: Response) => {
@@ -46,23 +63,24 @@ module.exports = function(app: Application){
 
     app.post('/2add-new-job-role-specification', async (req: Request, res: Response) => {
   
-        req.session.jobrole["specification"] = req.body.specification
+        req.session.jobrole["jobSpecification"] = req.body.jobSpecification
 
         res.redirect('/3choose-capability')
 
     })
 
     app.get('/3choose-capability', async (req: Request, res: Response) => {
-        let data: String;
+        let data: Capability;
 
         try {
+            
             data = await capabilityService.getCapabilities();
         } catch (e) {
             console.error(e);
         }
       
         res.render('3choose-capability', {
-            capability:data
+            capabilities:data
         })
     })
 
@@ -75,7 +93,7 @@ module.exports = function(app: Application){
     })
 
     app.get('/4choose-band-level', async (req: Request, res: Response) => {
-        let data: String;
+        let data: BandLevel;
 
         try {
             data = await bandLevelService.getBandLevels();
@@ -84,7 +102,7 @@ module.exports = function(app: Application){
         }
       
         res.render('4choose-band-level', {
-            capability:data
+            bandLevels:data
         })
     })
 
@@ -97,17 +115,21 @@ module.exports = function(app: Application){
     })
 
     app.get('/5choose-job-family', async (req: Request, res: Response) => {
-        let data: String;
+        let data: JobRole[]
+        let uniqueJobFamilies: String[]
 
         try {
-            data = await jobroleService.getBandLevels();
+            data = await jobroleService.getJobroles();
+
+            uniqueJobFamilies = Array.from(new Set(data.map(JobRole => JobRole.jobFamily))); 
+
         } catch (e) {
             console.error(e);
         }
-      
+
         res.render('5choose-job-family', {
-            jobrole:data
-        })
+            jobFamilies: uniqueJobFamilies
+        }); 
 
     })
 
@@ -141,7 +163,7 @@ module.exports = function(app: Application){
 
         try{
 
-            jobrole = await jobroleService.createNewJobRole(data)
+            jobrole = await jobroleService.createJobRole(data)
 
             req.session.jobrole = undefined
 

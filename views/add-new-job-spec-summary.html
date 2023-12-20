@@ -18,11 +18,11 @@
         <main class="container mt-4">
             <section id="form" class="bg-light py-5">
                 <div class="container">
-                    <p>Add The Responsibilities Of The New Job Role</p>
-                    <form action="/2add-new-job-role-specification" method="post">
+                    <p>Add The Job Specification Summary Of The New Job Role</p>
+                    <form action="/add-new-job-spec-summary" method="post">
                         <div class="form-group">
-                            <label for="responsibilities">Responsibilities</label>
-                            <input type="text" id="responsibilities" name="responsibilities" class="form-control" value="{{ responsibilities }}" required>
+                            <label for="jobSpecSummary">Job Specificaiton Summary</label>
+                            <input type="text" id="jobSpecSummary" name="jobSpecSummary" class="form-control" value="{{ jobSpecSummary }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Next</button>
                     </form>

@@ -28,19 +28,22 @@
                     {% endif %}
                     <form action="/7confirm-new-job-role" method="post">
                         <div class="form-group">
-                            <label for="Job role name">jobRole: {{ jobrole }}</label>
+                            <label for="jobRole">Job Role: {{ jobrole }}</label>
                         </div>
                         <div>
-                            <label for="Specification">Specification: {{ specification }}</label>
+                            <label for="jobSpecSummary">Specification: {{ jobSpecSummary }}</label>
                         </div>
                         <div>
-                            <label for="Capability">Capability: {{ capability }}</label>
+                            <label for="jobSpecification">SharePoint link: {{ jobSpecification }}</label>
                         </div>
                         <div>
-                            <label for="Band-level">BandLevel: {{ bandLevel }}</label>
+                            <label for="capability">Capability: {{ capability }}</label>
                         </div>
                         <div>
-                            <label for="Job family">JobFamily: {{ jobFamily }}</label>
+                            <label for="bandLevel">Band Level: {{ bandLevel }}</label>
+                        </div>
+                        <div>
+                            <label for="jobFamily">Job Family: {{ jobFamily }}</label>
                         </div>
                         <div>
                             <label for="Responsibilities">Responsibilities: {{ responsibilities }}</label>

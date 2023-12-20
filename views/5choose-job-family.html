@@ -16,13 +16,22 @@
             </div>
         </header>
         <main class="container mt-4">
-            <section id="addNewJobTitleHeader" class="mt-4">
-                <h2>Select From The Drop-Down List The Family Of The New Job Role</h2>
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Choose The Job Family Of The New Job Role</p>
+                    <form id="chooseJobFamily" action="/5choose-job-family" method="post">
+                        <div class="form-group">
+                            <label for="JobFamily">Job Family</label>
+                            <select id="jobFamily" name="jobFamily" class="form-control" required>
+                                {% for jobFamily in jobFamilies %}
+                                    <option value="{{ jobFamily }}">{{ jobFamily }}</option>
+                                  {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
             </section>
-
-            
-
-
         </main>
     </body>
 </html>

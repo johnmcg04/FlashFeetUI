@@ -24,7 +24,7 @@
                             <label for="Capability">Capability</label>
                             <select id="capability" name="capability" class="form-control" required>
                                 {% for capability in capabilities  %}
-                                    <option value="{{ jobrole.capability }}">{{ jobrole.capability }}</option>
+                                    <option value="{{ capability.capability }}">{{ capability.capability }}</option>
                                 {% endfor %}
                             </select>
                         </div>

@@ -10,4 +10,5 @@ module.exports.getCapabilities = async function (): Promise<Capability[]> {
     } catch (e) {
         throw new Error('Could not get job capabilities')
     }
+    
 } 
