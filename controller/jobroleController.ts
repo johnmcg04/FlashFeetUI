@@ -8,9 +8,7 @@ module.exports = function(app: Application){
     app.get ('/jobroles', async (req: Request, res: Response) => {
         let data: JobRole[]
 
-            data = await jobroleService.getJobroles()
-            console.log(data)
-        
+            data = await jobroleService.getJobroles()        
 
         res.render('list-job-roles', { jobroles: data })
     })}
