@@ -1,20 +1,20 @@
-const webdriver = require('selenium-webdriver');
-const chai = require("chai");
-const expect = chai.expect;
+var webdriver = require('selenium-webdriver');
+var chai = require("chai");
+var expect = chai.expect;
 
 
 
 describe('Login Page', function() {
     this.timeout(5000); // Set timeout to 5 seconds
-    let driver;
-    let page;
+    var driver;
+    var page;
 
-    before(async function() {
+    
+
+    it('should have the correct title', async function(){
+
         driver = new webdriver.Builder().forBrowser('chrome').build();
         page = await driver.get('http://localhost:3000/login'); 
-    });
-
-    it('should have the correct title', async function() {
         const title = await driver.getTitle();
         expect(title).to.equal('Login'); 
     });

@@ -1,5 +1,4 @@
 import { Response, Request } from 'express';
-import { JobRole } from './model/jobrole';
 
 const express = require('express');
 const path = require("path");
@@ -7,7 +6,6 @@ const nunjucks = require("nunjucks");
 const { title } = require('process');
 const session = require('express-session');
 const sessionSecret = process.env.SESSION_SECRET;
-
 
 
 const app = express();
@@ -34,10 +32,10 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-console.log(sessionSecret);
-if(!sessionSecret) {
-    throw new Error("SESSION_SECRET environment variable is not set");
-}
+// console.log(sessionSecret);
+// if(!sessionSecret) {
+//     throw new Error("SESSION_SECRET environment variable is not set");
+// }
 
 app.use(session(
         {   
@@ -73,3 +71,4 @@ const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);
 
 require('./Controller/authController')(app);
+require('./Controller/tokenController')(app);
