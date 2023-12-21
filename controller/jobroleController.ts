@@ -78,6 +78,9 @@ module.exports = function(app: Application){
         } catch (e) {
             console.error(e);
         }
+        if (!req.session.capability) {
+            req.session.capability = {}
+        }
       
         res.render('3choose-capability', {
             capabilities:data
@@ -86,7 +89,7 @@ module.exports = function(app: Application){
 
     app.post('/3choose-capability', async (req: Request, res: Response) => {
   
-        req.session.jobrole["capability"] = req.body.capability
+        req.session.capability["capability"] = req.body.capability
 
         res.redirect('/4choose-band-level')
 
@@ -100,6 +103,9 @@ module.exports = function(app: Application){
         } catch (e) {
             console.error(e);
         }
+        if (!req.session.bandLevel) {
+            req.session.bandLevel = {}
+        }
       
         res.render('4choose-band-level', {
             bandLevels:data
@@ -108,7 +114,7 @@ module.exports = function(app: Application){
 
     app.post('/4choose-band-level', async (req: Request, res: Response) => {
   
-        req.session.jobrole["bandLevel"] = req.body.bandLevel
+        req.session.bandLevel["bandLevel"] = req.body.bandLevel
 
         res.redirect('/5choose-job-family')
 
