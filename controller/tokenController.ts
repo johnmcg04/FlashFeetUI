@@ -6,24 +6,24 @@ import { DecodedJwt } from "../model/decodedjwt";
 module.exports = function (app: Application) {
     // Route for homepage
     app.get("/", async (req: Request, res: Response) => {
+        console.log("entering token controller")
         const decodedJwt: DecodedJwt = jwtDecode(req.session.token);
         if (decodedJwt.role_id == RoleID.Admin) {
-            res.render("login"); //admin login
+            res.render("admin-menu"); //admin login
         }
         else if (decodedJwt.role_id == RoleID.User) {
-            res.render("login"); //normal user login
+            res.render("menu"); //normal user login
         }
     });
 
     // Logout route
     app.get("/logout", (req, res) => {
-        // Clear the session or authentication token
         req.session.destroy((err) => {
             if (err) {
                 console.error("Error destroying session:", err);
                 return res.status(500).send("Error logging out");
             }
-            // Redirect to the login page or any other page after logout
+            // Redirect to the login page after logout
             res.redirect("/login");
         });
     });

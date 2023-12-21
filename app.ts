@@ -5,7 +5,7 @@ const path = require("path");
 const nunjucks = require("nunjucks");
 const { title } = require('process');
 const session = require('express-session');
-const sessionSecret = process.env.SESSION_SECRET;
+process.env['SESSION_SECRET'] = 'your_secret_here'
 
 
 const app = express();
@@ -59,16 +59,16 @@ app.listen(3000, () => {
 
 //express routes
 
-app.get('/', (req: Request, res: Response) => {
-    res.render("login", {
-        title: 'Login',
+app.get('/index', (req: Request, res: Response) => {
+    res.render("index", {
+        title: 'index',
     });     
 });
 
-require('./Controller/jobroleController')(app);
+// require('./controller/jobroleController')(app);
 
-const authMiddleware = require("./middleware/auth");
-app.use(authMiddleware);
+// const authMiddleware = require("./middleware/auth");
+// app.use(authMiddleware);
 
-require('./Controller/authController')(app);
-require('./Controller/tokenController')(app);
+require('./controller/authController')(app);
+require('./controller/tokenController')(app);

@@ -7,14 +7,21 @@ const authService = require("../service/AuthService");
 module.exports = function(app: Application) {
 
     app.get('/login', async (req: Request, res: Response) => {
+
         res.render('login')
-    })
+    });
 
     app.post('/login', async (req: Request, res: Response) => {
         let data: Login = req.body
 
         try{
-            req.session.token = await authService.login(data)
+            req.session.token = await authService.login(data) //logging in
+
+            //need to check if log in is admin or user
+
+            //if admin  ->    admin-menu
+
+            //if user   ->    menu
 
             res.redirect('/jobroles')
         }
@@ -25,5 +32,5 @@ module.exports = function(app: Application) {
 
             res.render('login', req.body)
         }
-    })
+    });
 }
