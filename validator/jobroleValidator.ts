@@ -5,5 +5,5 @@ module.exports.validateJobrole = function (jobrole: JobRole): string {
         return "Job role greater than 50 characters";
     }
 
-    return null
-}
+    return null;
+};
