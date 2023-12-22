@@ -13,6 +13,16 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
     }
 } 
 
+module.exports.getJobRole = async function (jobRole: string): Promise<JobRole> {
+    try {
+        const response = await axios.get("http://localhost:8080/api/jobroles/" + jobRole )
+
+        return response.data
+    } catch (e) {
+        throw new Error("Could not get job role")
+    }
+}
+
 module.exports.createJobRole = async function (jobrole: JobRole): Promise<string> {
     
     try {

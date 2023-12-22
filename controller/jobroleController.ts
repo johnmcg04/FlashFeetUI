@@ -161,6 +161,24 @@ module.exports = function(app: Application){
 
     })
 
+    app.get("/7confirm-new-job-role", async (req: Request, res: Response) => {
+      let data: JobRole[];
+
+      try {
+        data = await jobroleService.getJobRole(
+          req.session.jobrole.jobRole
+        );
+      } catch (e) {
+        console.error(e);
+      }
+
+      res.render("7confirm-new-job-role", {
+        JobRole: req.session.jobrole,
+        BandLevel: req.session.bandLevel,
+        Capability: req.session.capability,
+      });
+    });
+
 
     app.post('/7confirm-new-job-role', async (req: Request, res: Response) => {
   
@@ -186,23 +204,23 @@ module.exports = function(app: Application){
 
     })
 
-    app.post('/1add-new-job-role', async (req: Request, res: Response) => {
-        let data: JobRole = req.body
-        let jobrole: JobRole
-        
- 
-        try {
-            jobrole = await jobroleService.createNewJobRole(data)
- 
-            res.redirect('/jobroles/' + jobrole)
-        } catch (e) {
-            console.error(e);
+                // app.post('/1add-new-job-role', async (req: Request, res: Response) => {
+                //     let data: JobRole = req.body
+                //     let jobrole: JobRole
+                    
             
-            res.locals.errormessage = e.message
- 
-            res.render('1add-new-job-role', req.body)
-        }
-    })
+                //     try {
+                //         jobrole = await jobroleService.createNewJobRole(data)
+            
+                //         res.redirect('/jobroles/' + jobrole)
+                //     } catch (e) {
+                //         console.error(e);
+                        
+                //         res.locals.errormessage = e.message
+            
+                //         res.render('1add-new-job-role', req.body)
+                //     }
+                // })
 
 
 
