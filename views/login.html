@@ -15,28 +15,32 @@
             </div>
         </div>
     </header>
-    <main class="container mt-4">
-        <section id="form" class="bg-light py-5">
+
+    <main class="container mt-1">
+        <section id="form" class="container">
             <div class="container">
                 {% if errormessage %}
                     <div class="alert alert-danger" role="alert">
                         {{ errormessage }}
                     </div>
                 {% endif %}
+
                 <form action="/login" method="post">
-                    <div class="form-group">
-                        <label for="username">Username</label>
+                    <div class="form-group mb-4">
+                        <label for="username" style="font-size: 1.2rem;" >Username</label>
                         <input type="text" id="username" name="username" class="form-control" value="{{ username }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password" style="font-size: 1.2rem;" >Password</label>
                         <input type="password" id="password" name="password" class="form-control" value="{{ password }}" required>
                     </div>
                     <button type="submit" class="btn btn-primary" id="login">Login</button>
                 </form>
+
             </div>
         </section>
     </main>
+
 </body>
 </html>
 
