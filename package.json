@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npx tsc && cp -R views dist && node dist/app.js",
     "test": "mocha test/unit/**/*",
-    "lint": "eslint .",
-    "test-ui": "mocha --timeout 10000 test/ui/**/*.js"
+    "test-ui": "mocha --timeout 10000 test/ui/**/*.js",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +39,10 @@
     "eslint": "^8.55.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error",
+    "prefer": "type-imports"
   },
   "keywords": []
 }
