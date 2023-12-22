@@ -6,7 +6,6 @@ import { DecodedJwt } from "../model/decodedjwt";
 module.exports = function (app: Application) {
     // Route for homepage
     app.get("/", async (req: Request, res: Response) => {
-        console.log("entering token controller")
         const decodedJwt: DecodedJwt = jwtDecode(req.session.token);
         if (decodedJwt.role_id == RoleID.Admin) {
             res.render("admin-menu"); //admin login

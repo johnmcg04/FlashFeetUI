@@ -3,7 +3,6 @@ const axios = require("axios");
 
 module.exports.login = async function (login: Login): Promise<void> {
     try { 
-        console.log('in try in authservice')
         const response = await axios.post("http://localhost:8080/api/login", login);
         
         return response.data;
