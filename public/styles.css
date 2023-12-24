@@ -224,7 +224,7 @@ ul li:nth-child(2) a::before
 ul li:nth-child(3) a::before
 {
     content: "\f16d";
-    background-image: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    background-image: linear-gradient(45deg,#2B3583 50%,#41679F 75%,#43A83F 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
