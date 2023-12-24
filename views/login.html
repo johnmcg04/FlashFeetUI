@@ -1,122 +1,120 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-    <header class="bg-dark text-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Login</h1>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="container mt-1">
-        <section id="form" class="container">
-            <div class="container">
-                {% if errormessage %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ errormessage }}
-                    </div>
-                {% endif %}
-
-                <form action="/login" method="post">
-                    <div class="form-group mb-4">
-                        <label for="username" style="font-size: 1.2rem;" >Username</label>
-                        <input type="text" id="username" name="username" class="form-control" value="{{ username }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" style="font-size: 1.2rem;" >Password</label>
-                        <input type="password" id="password" name="password" class="form-control" value="{{ password }}" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="login">Login</button>
-                </form>
-
-            </div>
-        </section>
-    </main>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Login</title>
-    <link rel="icon" href="public/images/kainosFavicon.ico">
-	<link rel="stylesheet" href="public/styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <title>Login and SignUp</title>
+  <link rel="icon" href="public/images/kainosFavicon.ico">
+  <!-- Bootstrap CDN-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <link rel="stylesheet" type="text/css" href="public/loginStyle.css">
+  <!-- OwlCarousel CDN for image slider-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+  <!-- Font awesome CDN for icons-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-    <main>
-        
-        <div class="wrapper">
-            <div class="header">
-                <div class="top">
-                    <div class="logo">
-                        <img src="public/images/kainosDarkLogo.png" alt="kainosDarkLogo" style="width: 175px;">
-                    </div>
-                        <form action="/login" method="post">
-                            {% if errormessage %}
-                            <div class="alert alert-danger" role="alert">
-                                {{ errormessage }}
-                            </div>
-                            {% endif %}
-                            <div class="form">
-                                <div class="input_field">
-                                    <input type="text" id="username" name="username" class="input" placeholder="Username" value="{{ username }}" required>
-                                </div>
-    
-                                <div class="input_field">
-                                    <input type="password" id="password" name="password" class="input" placeholder="Password" value="{{ password }}" required>
-                                </div>
-    
-                                <div>
-                                    <button type="submit" class ="btnLogin" id="login">Log in</button>
-                                </div>
-                            </div>
-                        </form>
-                        
-                    <div class="or">
-                        <div class="line"></div>
-                        <p>OR</p>
-                        <div class="line"></div>
-                    </div>
-                    <div class="dif">
-                        <div class="fb">
-                            <img src="public/images/kainosDarkLogo.png" alt="kainosDarkLogo" style="width: 175px;">
-                            <p>Log in with Facebook</p>
-                        </div>
-                        <div class="forgot">
-                            <a href="#">Forgot password?</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="signup">
-                    <p>Don't have an account? <a href="views/register">Register</a></p>
-                </div>
+  <section class="login-block">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4 login-sec">
+            <div class="logo" >
+              <img src="public/images/kainosDarkLogo.png" alt="kainosDarkLogo" style="width: 175px;">
             </div>
-            <div class="footer">
-                <div>
-                    
-                </div>
-                <div class="copyright">
-                    Copyright © 2023 Kainos. Registered in NI NI019370
-                </div>
-            </div>
+              <form class="login-form">
+        <div class="form-group">
+          <i class="fa fa-user" style="font-size: 12px"></i>
+          <label for="exampleInputEmail1" class="text-uppercase" style="font-family: sans-serif; font-size: 12px">Username</label>
+          <input type="text" class="form-control" placeholder="Enter your username">
+          
         </div>
-    </main>
+        <div class="form-group">
+          <i class="fa fa-key" style="font-size: 12px"></i>
+          <label for="exampleInputPassword1" class="text-uppercase" style="font-family: sans-serif; font-size: 12px">Password</label>
+          <input type="password" class="form-control" placeholder="Enter your Password">
+        </div>
+        <button type="submit" class="btn-block login-button" style="border-radius: 20px; margin-top: 20px">Login</button>
+        <div class="strike">
+          <span>OR</span>
+        </div>
+        <!-- put in register button -->
+      </form>
+      <div class="copy-text">Don't have an Account? <a href="">Sign Up</a></div>
+    </div>
+    <div class="col-md-8 banner-sec">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 750px">
+           <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+        <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <img class="d-block img-fluid" src="public/images/LastDayBeforeChristmasEAYLAcademy2023.jpg" alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="banner-text">
+                <h2>Make Great Friends</h2>
+                <p></p>
+            </div>  
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block img-fluid" src="public/images/FlexiSpaceDailyStandUp2023EAYLAcademy.png" alt="Second slide">
+        <div class="carousel-caption d-none d-md-block">
+          <div class="banner-text">
+              <h2>Progress Your Career</h2>
+              <p>We provide video-based lessons covering entire NEB and TU syllabus. Hurry up and join to access all subjects videos for free.</p>
+          </div>  
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block img-fluid" src="public/images/ChristmasParty6thDec2023big.png" alt="Second slide">
+        <div class="carousel-caption d-none d-md-block">
+          <div class="banner-text">
+              <h2>Have Amazing Fun</h2>
+              <p>n</p>
+          </div>  
+        </div>
+      </div>        
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="social-login">Login with your Social Media Account</div>
+  <div class="social-media-icons d-flex justify-content-center">
+    <ul>
+      <li><a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a></li>
+      <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+    </ul>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 1000,
+                autoplayHoverPause: true,
+                items: 1
+            });
+        });
+    </script>
 </body>
+
 </html>
-
-
-
-

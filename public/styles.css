@@ -253,3 +253,6 @@ ul li:hover a::before
     height: 100%;
 }
 
+.social-media-icons i {
+	color: white;
+  }
