@@ -8,10 +8,12 @@ module.exports = function (app: Application) {
     app.get("/", async (req: Request, res: Response) => {
         const decodedJwt: DecodedJwt = jwtDecode(req.session.token);
         if (decodedJwt.role_id == RoleID.Admin) {
+            res.redirect("admin-menu");
             res.render("admin-menu"); //admin login
         }
         else if (decodedJwt.role_id == RoleID.User) {
             res.render("menu"); //normal user login
+            res.redirect("menu");
         }
     });
 
