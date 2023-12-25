@@ -4,7 +4,7 @@
 	background: linear-gradient(to bottom, #2B3583, #41679F, #43A83F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	float:left;
 	width:100%;
-	height: 635px;
+	height: 755px;
 	padding : 40px 0;
 }
 .form-control:focus {
@@ -212,4 +212,11 @@ ul li:nth-child(3):hover{
   color: #2B3583;
   box-shadow: 0 0 15px #41679F;
   text-shadow: 0 0 15px #43A83F;
+}
+.custom-footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#6cf;
 }
