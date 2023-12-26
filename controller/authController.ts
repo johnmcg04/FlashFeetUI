@@ -1,6 +1,5 @@
 import { Request, Response, Application } from "express"
 import { Login } from "../model/auth"
-
 const authService = require("../service/AuthService");
 
 module.exports = function(app: Application) {
@@ -13,20 +12,19 @@ module.exports = function(app: Application) {
         let data: Login = req.body
 
         try{
-            let result = await authService.login(data) //logging in
+            let result = await authService.login(data) //checking is valid log in
             req.session.token = result.token;
 
+            let isAdmin = await authService.chkAdmin(data)
+
             // Check if log in is admin or user
-            if(result.isAdmin){
+            if(isAdmin == true){ //could change this to INT for further levels of security clearance e.g. managers but not admins
                 // If admin -> redirect to admin-menu
                 res.redirect('/admin-menu')
-            } else {
-                console.log("hitting else statement")
-                // If user -> redirect to menu
+            } else {// If user -> redirect to menu
                 res.redirect('/menu')
-            }
-        }
-        catch(e){
+            }}
+            catch(e){
             console.log(e)
             res.locals.errormessage = e.message
             res.render('login', req.body)

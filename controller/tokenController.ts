@@ -12,6 +12,7 @@ module.exports = function (app: Application) {
             res.render("admin-menu"); //admin login
         }
         else if (decodedJwt.role_id == RoleID.User) {
+            console.log(req.session.id)
             res.render("menu"); //normal user login
             res.redirect("menu");
         }

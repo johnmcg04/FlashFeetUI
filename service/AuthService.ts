@@ -1,16 +1,21 @@
 import { Login } from "../model/auth";
 const axios = require("axios");
 
-module.exports.login = async function (login: Login) {
+module.exports.login = async function (login: Login): Promise<void> {
     try { 
-        const response = await axios.post("http://localhost:8080/api/login", login);
+        const response = await axios.post("http://localhost:8080/api/login", login); //sending login info to API
         
-        // Assuming the response data contains 'token' and 'isAdmin'
-        return {
-            token: response.data.token,
-            isAdmin: response.data.isAdmin
-        };
+        return response.data; //returning back the response of the login API endpoint
     } catch (e) {
         throw new Error("Could not login");
+    }
+};
+
+module.exports.chkAdmin = async function (login: Login): Promise<void> {
+    try { 
+        const response = await axios.post("http://localhost:8080/api/checkIsAdmin", login.username); //sending username to API
+        return response.data; //returning back the response of the chkAdmin method in backend
+    } catch (e) {
+        throw new Error("Could not redirect");
     }
 };
