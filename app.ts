@@ -19,7 +19,6 @@ let nunjucksConfig = {
     express: app
 };
 
-
 nunjucks.configure(appViews, nunjucksConfig);
 
 //configure express
@@ -66,5 +65,3 @@ require('./controller/authController')(app);
 
 const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);
-
-require('./controller/tokenController')(app);

@@ -12,20 +12,10 @@ module.exports = function(app: Application) {
         let data: Login = req.body
 
         try{
-            req.session.token = await authService.login(data); //checking is valid log in
-            let isAdmin = await authService.chkAdmin(req.session.token); //checking if token is admin
+            req.session.token = await authService.login(data); //checking is valid log in returns UUID token
+            let isAdmin = await authService.chkAdmin(req.session.token); //checking if token is admin returns bool
 
-            //let isAdmin = await authService.chkAdmin(data);
-
-            // Check if log in is admin or user
-            if(isAdmin == true){ //could change this to INT for further levels of security clearance e.g. managers but not admins
-                // If admin -> redirect to admin-menu
-                res.redirect("admin-menu");
-                res.render("admin-menu");
-            } else {// If user -> redirect to menu
-                res.redirect("menu");
-                res.render("menu");
-            }
+            redirectToMenu(isAdmin, res);        
         }
             catch(e){
             console.log(e)
@@ -34,3 +24,16 @@ module.exports = function(app: Application) {
         }
     });
 }
+function redirectToMenu(isAdmin: any, res: Response<any, Record<string, any>>) {
+    try {
+        if (isAdmin == true) { 
+            // If admin -> redirect to admin-menu
+            res.redirect("/admin-menu");
+        } else { // If user -> redirect to menu
+            res.redirect("menu");
+        }
+    } catch (e) {
+        throw new Error("Could not redirect");
+    }
+}
+
