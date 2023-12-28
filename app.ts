@@ -51,8 +51,8 @@ app.listen(3000, () => {
     console.log("Server listening on port 3000");
 });
 
-//express routes
 
+//express routes
 app.get('/', (req: Request, res: Response) => {
     res.render("login", {
         title: 'Login Or Sign Up',
@@ -62,6 +62,7 @@ app.get('/', (req: Request, res: Response) => {
 require('./controller/jobroleController')(app);
 
 require('./controller/authController')(app);
+
 
 const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);

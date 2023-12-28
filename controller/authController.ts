@@ -20,10 +20,10 @@ module.exports = function(app: Application) {
             // Check if log in is admin or user
             if(isAdmin == true){ //could change this to INT for further levels of security clearance e.g. managers but not admins
                 // If admin -> redirect to admin-menu
-                res.redirect('/admin-menu')
+                res.redirect("admin-menu");
                 res.render("admin-menu");
             } else {// If user -> redirect to menu
-                res.redirect('/menu')
+                res.redirect("menu");
                 res.render("menu");
             }
         }

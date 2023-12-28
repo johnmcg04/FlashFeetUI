@@ -8,13 +8,27 @@ module.exports = function (app: Application) {
     app.get("/", async (req: Request, res: Response) => {
         const decodedJwt: DecodedJwt = jwtDecode(req.session.token);
         if (decodedJwt.role_id == RoleID.Admin) {
-            res.redirect("admin-menu");
-            res.render("admin-menu"); //admin login
+            res.render('admin-menu')
+            //res.redirect("admin-menu");
         }
         else if (decodedJwt.role_id == RoleID.User) {
-            res.redirect("menu");
-            res.render("menu"); //normal user login
+            res.render("menu");
+            //res.redirect("menu");
+
         }
+        else {
+            res.status(403).send("Access denied");
+        }
+    });
+
+    // Admin menu route
+    app.get("/admin-menu", async (req: Request, res: Response) => {
+        const decodedJwt: DecodedJwt = jwtDecode(req.session.token);
+        if (decodedJwt.role_id != RoleID.Admin) {
+            return res.status(403).send("Access denied");
+        }
+        // If user is an admin, render the admin menu
+        res.render("admin-menu");
     });
 
     // Logout route
