@@ -11,7 +11,7 @@ describe('Login Page', function() {
         driver = new webdriver.Builder().forBrowser('chrome').build();
         page = await driver.get('http://localhost:3000/login'); 
         const title = await driver.getTitle();
-        expect(title).to.equal('Login and Sign Up'); 
+        expect(title).to.equal('Login Or Sign Up'); 
     });
 
     it('should redirect admin to admin menu page with valid credentials', async function() {

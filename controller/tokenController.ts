@@ -12,20 +12,20 @@ module.exports = function (app: Application) {
             res.render("admin-menu"); //admin login
         }
         else if (decodedJwt.role_id == RoleID.User) {
-            console.log(req.session.id)
-            res.render("menu"); //normal user login
             res.redirect("menu");
+            res.render("menu"); //normal user login
         }
     });
 
     // Logout route
     app.get("/logout", (req, res) => {
+        // Clear the session or authentication token
         req.session.destroy((err) => {
             if (err) {
                 console.error("Error destroying session:", err);
                 return res.status(500).send("Error logging out");
             }
-            // Redirect to the login page after logout
+            // Redirect to the login page or any other page after logout
             res.redirect("/login");
         });
     });

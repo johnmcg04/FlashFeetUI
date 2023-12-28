@@ -12,10 +12,10 @@ module.exports = function(app: Application) {
         let data: Login = req.body
 
         try{
-            let result = await authService.login(data) //checking is valid log in
-            req.session.token = result.token;
+            req.session.token = await authService.login(data); //checking is valid log in
+            let isAdmin = await authService.chkAdmin(req.session.token); //checking if token is admin
 
-            let isAdmin = await authService.chkAdmin(data)
+            //let isAdmin = await authService.chkAdmin(data);
 
             // Check if log in is admin or user
             if(isAdmin == true){ //could change this to INT for further levels of security clearance e.g. managers but not admins
@@ -23,7 +23,8 @@ module.exports = function(app: Application) {
                 res.redirect('/admin-menu')
             } else {// If user -> redirect to menu
                 res.redirect('/menu')
-            }}
+            }
+        }
             catch(e){
             console.log(e)
             res.locals.errormessage = e.message
