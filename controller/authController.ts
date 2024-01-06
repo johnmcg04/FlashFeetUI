@@ -15,7 +15,7 @@ module.exports = function(app: Application) {
             req.session.token = await authService.login(data); //checking is valid log in returns UUID token
             let isAdmin = await authService.chkAdmin(req.session.token); //checking if token is admin returns bool
 
-            redirectToMenu(isAdmin, res);        
+            redirectToMenu(isAdmin, res);
         }
             catch(e){
             console.log(e)
