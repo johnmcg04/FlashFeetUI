@@ -63,6 +63,7 @@ require('./controller/jobroleController')(app);
 
 require('./controller/authController')(app);
 
+require('./controller/SignUpController')(app);
 
 const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);
