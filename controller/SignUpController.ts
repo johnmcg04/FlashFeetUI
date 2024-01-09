@@ -1,5 +1,5 @@
 import { Request, Response, Application } from "express"
-import { SignUp } from "../model/auth"
+import { SignUp } from "../model/SignUp"
 const signUpService = require("../service/SignUpService");
 
 module.exports = function(app: Application) {

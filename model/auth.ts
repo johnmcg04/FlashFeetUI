@@ -3,7 +3,4 @@ export class Login{
     password: string
 };
 
-export class SignUp{
-    username: string
-    password: string
-};
+
