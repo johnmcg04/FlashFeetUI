@@ -38,8 +38,8 @@ describe('Login Page', function() {
         const passwordInput = await driver.findElement(webdriver.By.id('password')); 
         const loginButton = await driver.findElement(webdriver.By.id('login')); 
 
-        await usernameInput.sendKeys('ryan');
-        await passwordInput.sendKeys('ryan');
+        await usernameInput.sendKeys('User123!');
+        await passwordInput.sendKeys('User123!');
         await loginButton.click();
 
         // Wait for the page to load
