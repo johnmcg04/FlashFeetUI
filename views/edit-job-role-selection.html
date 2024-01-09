@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Job Role</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="bg-dark text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Edit job Role</h1>
+                    </div>
+                </div>
+            </div> 
+        </header>
+        <main class="container mt-4">
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Choose job role to edit</p>
+                    <form action="/edit-job-role-selection" method="post">
+                        <div class="form-group">
+                                <label for="jobRole">Job Role</label>
+                                <select id="jobRole" name="jobRole" class="form-control" required>
+                                    {% for jobRole in jobRoles %}
+                                    <option value="{{ jobrole.jobRole }}">{{jobRole.jobRole}}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
