@@ -24,7 +24,7 @@ module.exports = function(app: Application){
     })
 
 
-    app.get('/1add-new-job-role', async (req: Request, res: Response) => {
+    app.get('/admin-add-new-job-role', async (req: Request, res: Response) => {
 
         if (!req.session.jobrole) {
             req.session.jobrole = {}
@@ -34,42 +34,42 @@ module.exports = function(app: Application){
 
     })
 
-    app.post('/1add-new-job-role', async (req: Request, res: Response) => {
+    app.post('/admin-add-new-job-role', async (req: Request, res: Response) => {
   
         req.session.jobrole["jobRole"] = req.body.jobRole
 
-        res.redirect('/add-new-job-spec-summary')
+        res.redirect('/admin-add-new-job-spec-summary')
     })
 
-    app.get('/add-new-job-spec-summary', async (req: Request, res: Response) => {
+    app.get('/admin-add-new-job-spec-summary', async (req: Request, res: Response) => {
 
         res.render('add-new-job-spec-summary')
 
     })
 
-    app.post('/add-new-job-spec-summary', async (req: Request, res: Response) => {
+    app.post('/admin-add-new-job-spec-summary', async (req: Request, res: Response) => {
   
         req.session.jobrole["jobSpecSummary"] = req.body.jobSpecSummary
 
-        res.redirect('/2add-new-job-role-specification')
+        res.redirect('/admin-add-new-job-role-specification')
 
     })
 
-    app.get('/2add-new-job-role-specification', async (req: Request, res: Response) => {
+    app.get('/admin-add-new-job-role-specification', async (req: Request, res: Response) => {
 
         res.render('2add-new-job-role-specification')
 
     })
 
-    app.post('/2add-new-job-role-specification', async (req: Request, res: Response) => {
+    app.post('/admin-add-new-job-role-specification', async (req: Request, res: Response) => {
   
         req.session.jobrole["jobSpecification"] = req.body.jobSpecification
 
-        res.redirect('/3choose-capability')
+        res.redirect('/admin-choose-capability')
 
     })
 
-    app.get('/3choose-capability', async (req: Request, res: Response) => {
+    app.get('/admin-choose-capability', async (req: Request, res: Response) => {
         let data: Capability;
 
         try {
@@ -87,15 +87,15 @@ module.exports = function(app: Application){
         })
     })
 
-    app.post('/3choose-capability', async (req: Request, res: Response) => {
+    app.post('/admin-choose-capability', async (req: Request, res: Response) => {
   
         req.session.capability["capability"] = req.body.capability
 
-        res.redirect('/4choose-band-level')
+        res.redirect('/admin-choose-band-level')
 
     })
 
-    app.get('/4choose-band-level', async (req: Request, res: Response) => {
+    app.get('/admin-choose-band-level', async (req: Request, res: Response) => {
         let data: BandLevel;
 
         try {
@@ -112,15 +112,15 @@ module.exports = function(app: Application){
         })
     })
 
-    app.post('/4choose-band-level', async (req: Request, res: Response) => {
+    app.post('/admin-choose-band-level', async (req: Request, res: Response) => {
   
         req.session.bandLevel["bandLevel"] = req.body.bandLevel
 
-        res.redirect('/5choose-job-family')
+        res.redirect('/admin-choose-job-family')
 
     })
 
-    app.get('/5choose-job-family', async (req: Request, res: Response) => {
+    app.get('/admin-choose-job-family', async (req: Request, res: Response) => {
         let data: JobRole[]
         let uniqueJobFamilies: String[]
 
@@ -139,29 +139,29 @@ module.exports = function(app: Application){
 
     })
 
-    app.post('/5choose-job-family', async (req: Request, res: Response) => {
+    app.post('/admin-choose-job-family', async (req: Request, res: Response) => {
   
         req.session.jobrole["jobFamily"] = req.body.jobFamily
 
-        res.redirect('/6add-new-job-responsibilities')
+        res.redirect('/admin-add-new-job-responsibilities')
 
     })
 
-    app.get('/6add-new-job-responsibilities', async (req: Request, res: Response) => {
+    app.get('/admin-add-new-job-responsibilities', async (req: Request, res: Response) => {
 
         res.render('6add-new-job-responsibilities')
 
     })
 
-    app.post('/6add-new-job-responsibilities', async (req: Request, res: Response) => {
+    app.post('/admin-add-new-job-responsibilities', async (req: Request, res: Response) => {
   
         req.session.jobrole["responsibilities"] = req.body.responsibilities
 
-        res.redirect('/7confirm-new-job-role')
+        res.redirect('/admin-confirm-new-job-role')
 
     })
 
-    app.get("/7confirm-new-job-role", async (req: Request, res: Response) => {
+    app.get("/admin-confirm-new-job-role", async (req: Request, res: Response) => {
       let data: JobRole[];
       
 
@@ -181,7 +181,7 @@ module.exports = function(app: Application){
     });
 
 
-    app.post('/7confirm-new-job-role', async (req: Request, res: Response) => {
+    app.post('/admin-confirm-new-job-role', async (req: Request, res: Response) => {
   
         let data: JobRole = req.session.jobrole
         data.bandLevel = req.session.bandLevel.bandLevel
