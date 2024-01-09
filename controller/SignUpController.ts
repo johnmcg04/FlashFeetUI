@@ -13,6 +13,7 @@ module.exports = function(app: Application) {
 
         try{
             req.session.token = await signUpService.signUp(data); //checking is valid sign up
+            res.redirect('/login');
         }
             catch(e){
             console.log(e)
