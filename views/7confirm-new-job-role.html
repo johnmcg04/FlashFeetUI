@@ -27,33 +27,32 @@
                     </div>
                     {% endif %}
                     <form action="/7confirm-new-job-role" method="post">
-                        <div class="form-group">
-                            <label for="jobRole">Job Role: {{ jobrole }}</label>
+                        <div>
+                            <label for="jobRole">Job Role: {{ jobRole.jobRole }}</label>
                         </div>
                         <div>
-                            <label for="jobSpecSummary">Specification: {{ jobSpecSummary }}</label>
+                            <label for="JobRole">Specification: {{ jobRole.jobSpecSummary }}</label>
                         </div>
                         <div>
-                            <label for="jobSpecification">SharePoint link: {{ jobSpecification }}</label>
+                            <label for="jobSpecification">SharePoint link: {{ jobRole.jobSpecification }}</label>
                         </div>
                         <div>
-                            <label for="capability">Capability: {{ capability }}</label>
+                            <label for="Capability">Capability: {{ capability.capability }}</label>
                         </div>
                         <div>
-                            <label for="bandLevel">Band Level: {{ bandLevel }}</label>
+                            <label for="BandLevel">Band Level: {{ bandLevel.bandLevel }}</label>
                         </div>
                         <div>
-                            <label for="jobFamily">Job Family: {{ jobFamily }}</label>
+                            <label for="JobFamily">Job Family: {{ jobRole.jobFamily }}</label>
                         </div>
                         <div>
-                            <label for="Responsibilities">Responsibilities: {{ responsibilities }}</label>
+                            <label for="Responsibilities">Responsibilities: {{ jobRole.responsibilities }}</label>
                         </div class="container">
                         <button type="submit" class="btn btn-primary">Confirm Job Role</button>
                         
                     </form>
                 </div>
             </section>
-
         </main>
     </body>
 </html>

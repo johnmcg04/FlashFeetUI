@@ -163,6 +163,7 @@ module.exports = function(app: Application){
 
     app.get("/7confirm-new-job-role", async (req: Request, res: Response) => {
       let data: JobRole[];
+      
 
       try {
         data = await jobroleService.getJobRole(
@@ -173,9 +174,9 @@ module.exports = function(app: Application){
       }
 
       res.render("7confirm-new-job-role", {
-        JobRole: req.session.jobrole,
-        BandLevel: req.session.bandLevel,
-        Capability: req.session.capability,
+        jobRole: req.session.jobrole,
+        bandLevel: req.session.bandLevel,
+        capability: req.session.capability
       });
     });
 
@@ -183,6 +184,9 @@ module.exports = function(app: Application){
     app.post('/7confirm-new-job-role', async (req: Request, res: Response) => {
   
         let data: JobRole = req.session.jobrole
+        data.bandLevel = req.session.bandLevel.bandLevel
+        data.capability = req.session.capability.capability
+
         let jobrole: JobRole
 
         try{
@@ -190,39 +194,23 @@ module.exports = function(app: Application){
             jobrole = await jobroleService.createJobRole(data)
 
             req.session.jobrole = undefined
+            req.session.bandLevel = undefined 
+            req.session.capability = undefined
 
-            res.redirect('/jobroles/' + jobrole)
+            res.redirect("/menu");
         }
         catch(e){
             console.log(e)
 
             res.locals.errormessage = e.message
 
-            res.render('7confirm-new-job-role', req.session.jobrole)
-
+            res.render("7confirm-new-job-role", {
+              jobRole: req.session.jobrole,
+              bandLevel: req.session.bandLevel,
+              capability: req.session.capability,
+            });
         }
-
-    })
-
-                // app.post('/1add-new-job-role', async (req: Request, res: Response) => {
-                //     let data: JobRole = req.body
-                //     let jobrole: JobRole
-                    
-            
-                //     try {
-                //         jobrole = await jobroleService.createNewJobRole(data)
-            
-                //         res.redirect('/jobroles/' + jobrole)
-                //     } catch (e) {
-                //         console.error(e);
-                        
-                //         res.locals.errormessage = e.message
-            
-                //         res.render('1add-new-job-role', req.body)
-                //     }
-                // })
-
-
+    });
 
 
     app.get('/delete-job-role', async (req: Request, res: Response) => {
@@ -234,9 +222,9 @@ module.exports = function(app: Application){
             console.error(e);
         }
       
-        res.render('delete-job-role', {
-            jobroles: data,
-        })
+        res.render("5choose-job-family", {
+          jobRole: req.session.jobrole,
+        }); 
     });
 
     app.post('/delete-job-role', async (req: Request, res: Response) => {
@@ -257,4 +245,4 @@ module.exports = function(app: Application){
 
     })
 
-}
+} 
