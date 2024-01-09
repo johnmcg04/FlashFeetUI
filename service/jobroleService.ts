@@ -6,7 +6,7 @@ const axios = require('axios');
 
 module.exports.getJobroles = async function (): Promise<JobRole[]> {
     try {
-        const response = await axios.get('http://localhost:8080/api/job-role-list')
+        const response = await axios.get(process.env.API_URL + 'job-role-list')
 
         return response.data
     } catch (e) {
@@ -17,7 +17,7 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
 
 module.exports.deleteJobRole = async function (jobRole: String) {
     try {
-        const response = await axios.delete('http://localhost:8080/api/delete-job-role/' + jobRole)
+        const response = await axios.delete(process.env.API_URL + 'delete-job-role/' + jobRole)
         
         return response.data
     } catch (e) {
