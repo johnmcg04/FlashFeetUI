@@ -10,7 +10,6 @@ module.exports = function(app: Application){
 
         try {
             data = await jobroleService.getJobroles()
-            console.log(data)
         } catch (e) {
             console.error(e);
         }
