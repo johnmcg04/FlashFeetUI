@@ -65,5 +65,9 @@ require('./controller/authController')(app);
 
 require('./controller/SignUpController')(app);
 
+require('./controller/adminController')(app);
+
+require('./controller/menuController')(app);
+
 const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);
