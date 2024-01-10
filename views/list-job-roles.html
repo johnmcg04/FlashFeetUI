@@ -32,8 +32,8 @@
                         {% for jobroles in jobroles %}
                         <tr>
                             <td><a href='jobroles/{{ jobroles.jobroles }}'>{{ jobroles.jobRole }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobSpecification }}">{{ jobroles.jobSpecification }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobCapability }}">{{ jobroles.jobCapability }}</a></td>
+                            <td><a href="{{ jobroles.jobSpecification }}">View Specification</a></td>
+                            <td><a href="jobroles/{{ jobroles.capability }}">{{ jobroles.capability }}</a></td>
                         </tr>
                         {% endfor %}
 
