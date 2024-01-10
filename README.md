@@ -12,3 +12,7 @@ hit endpoint: "/login"
 use "npm run test" to run unit tests
 
 use "npm run test-ui" to run UI tests
+
+```shell
+npm install
+```
