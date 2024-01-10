@@ -35,7 +35,7 @@ module.exports = function(app: Application){
          try {
             jobRole = await jobroleService.deleteJobRole(data)
 
-            res.redirect('/delete-job-role/' + jobRole)
+            res.redirect('/delete-job-role')
         } catch (e) {
             console.error(e);
 
