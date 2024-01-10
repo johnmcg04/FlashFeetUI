@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npx tsc && cp -R views dist && cp -r public dist && node dist/app.js",
     "test": "mocha test/unit/service/AuthServiceTests.js",
+    "test-SignUp-Unit": "mocha test/unit/service/SignUpTests.js",
     "lint": "eslint .",
     "test-ui": "mocha --timeout 10000 test/ui/**/*.js"
   },
