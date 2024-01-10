@@ -1,10 +1,12 @@
 var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
 var chai = require('chai');  
-const expect = chai.expect;
+var expect = chai.expect;
+import { describe, it } from 'mocha';
+
 
 describe('Login System - AuthService Class', () => {
-    let mockAxios;
+    let mockAxios : any;
 
     beforeEach(() => {
         mockAxios = new MockAdapter(axios);
