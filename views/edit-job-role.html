@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Job Role</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="bg-dark text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Edit job Role</h1>
+                    </div>
+                </div>
+            </div> 
+        </header>
+        <main class="container mt-4">
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <h2>{{JobRole.jobRole}}</h2>
+                    <form action="/edit-job-role" method="post">
+                        <div class="form-group">
+                            <label for="jobRole">Job Role:</label>
+                            <input type="text" id="jobRole" name=jobRole" class="form-control" value="{{ JobRole.jobRole }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobSpecification">Job Specification:</label>
+                            <input type="text" id="jobSpecification" name=jobSpecification" class="form-control" value="{{ JobRole.jobSpecification }}" height="400" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobCapability">Job Capability:</label>
+                            <select id="jobCapability" name="jobCapability" class="form-control" required>
+                                {% for capability in Capabilities %}
+                                {% if capability.capability == JobRole.capability %}
+                                <option value="{{ capability.capability }}" selected>{{ capability.capability }}</option>
+                                {% else %}
+                                <option value="{{ capability.capability }}">{{ capability.capability }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobBandLevel">Band Level:</label>
+                            <select id="jobBandLevel" name="jobBandLevel" class="form-control" required>
+                                {% for bandLevel in BandLevels %}
+                                {% if bandLevel.bandLevel == JobRole.bandLevel %}
+                                <option value="{{ bandLevel.bandLevel }}" selected>{{ bandLevel.bandLevel }}</option>
+                                {% else %}
+                                <option value="{{ bandLevel.bandLevel }}">{{ bandLevel.bandLevel }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobFamily">Job Family:</label>
+                            <input type="text" id="jobFamily" name=jobFamily" class="form-control" value="{{ JobRole.jobFamily }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobRepsonsiblities">Job Responsiblities:</label>
+                            <input type="text" id="jobRepsonsiblities" name=jobRepsonsiblities" class="form-control" value="{{ JobRole.responsibilities }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobSpecSummary">Job Specification Summary:</label>
+                            <input type="text" id="jobSpecSummary" name=jobSpecSummary" class="form-control" value="{{ JobRole.jobSpecSummary }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
