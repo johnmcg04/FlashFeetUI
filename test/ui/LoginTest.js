@@ -4,10 +4,10 @@ var expect = chai.expect;
 
 describe('Login Page', function() {
     this.timeout(50000); // Set timeout to 5 seconds
-    var driver :any;
+    var driver;
     var page;
 
-    it('should have the correct title', async() =>{
+    it('should have the correct title', async function(){
         driver = new webdriver.Builder().forBrowser('chrome').build();
         page = await driver.get('http://localhost:3000/login'); 
         const title = await driver.getTitle();
