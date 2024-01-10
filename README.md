@@ -1,6 +1,8 @@
 # FlashFeetUI
 User Interface for team FlashFeet
 
+use "npm install" to build your application
+
 use "npm start" to run the application for frontend
 
 insure to have backend running before testing functionality
