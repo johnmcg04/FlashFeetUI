@@ -25,15 +25,15 @@
                         <tr>
                             <th scope="col">Job Role</th>
                             <th scope="col">Job Role Specification</th>
-                            <th scope="col">Job Role Capability</th>
+                            <th scope="col">Job RoleCapability</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for jobroles in jobroles %}
                         <tr>
-                            <td><a href='jobroles/{{ jobroles.jobroles }}'>{{ jobroles.jobRole }}</a></td>
+                            <td>{{ jobroles.jobRole }}</td>
                             <td><a href="{{ jobroles.jobSpecification }}">View Specification</a></td>
-                            <td><a href="jobroles/{{ jobroles.capability }}">{{ jobroles.capability }}</a></td>
+                            <td>{{ jobroles.capability }}</td>
                         </tr>
                         {% endfor %}
 
