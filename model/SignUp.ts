@@ -1,6 +1,4 @@
-export class Login{
+export class SignUp{
     username: string;
     password: string;
 }
-
-

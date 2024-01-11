@@ -57,6 +57,8 @@ app.get("/", (req: Request, res: Response) => {
     });     
 });
 
+
+
 require("./controller/jobroleController")(app);
 
 require("./controller/authController")(app);
@@ -69,3 +71,4 @@ require("./controller/menuController")(app);
 
 const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);
+

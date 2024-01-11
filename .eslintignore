@@ -1,7 +1,15 @@
 /dist/*
 
 <<<<<<< HEAD
+test/unit/service/JobRoleServiceTest.js
+
+test/ui/LoginTest.js
+
+test/ui/SignUpTests.js
+=======
+<<<<<<< HEAD
 test/ui/LoginTest.js
 =======
 test/ui/LoginTest.js
+>>>>>>> Pre-Production
 >>>>>>> Pre-Production
