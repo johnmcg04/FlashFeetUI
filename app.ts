@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { JobRole } from "./model/jobrole";
+import { JobRole } from "./model/jobRole";
 import { Capability } from "./model/capability";
 import { BandLevel } from "./model/bandLevel";
 
@@ -7,20 +7,25 @@ import { BandLevel } from "./model/bandLevel";
 const express = require("express");
 const path = require("path");
 const nunjucks = require("nunjucks");
-const session = require("express-session")
+const session = require("express-session");
 
 const app = express();
 
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use("/public", express.static(path.join(__dirname, "public")));
  
-app.use(express.json())
+app.use(express.json());
  
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: true}));
 
-app.use(session({secret: 'NOT HARDCODED SECRET', cookie: {maxAge: 60000}}));
+app.use(session({secret: "NOT HARDCODED SECRET", cookie: {maxAge: 60000}}));
 
 // Configure Nunjucks
+
+process.env["SESSION_SECRET"] = "your_secret_here";
+
+
+//configure nunjucks
 const appViews = path.join(__dirname, "/views/");
 
 const nunjucksConfig = {
@@ -31,7 +36,8 @@ const nunjucksConfig = {
 
 nunjucks.configure(appViews, nunjucksConfig);
 
-// Configure Express
+//configure express
+
 app.set("view engine", "html");
 
 declare module "express-session" {
@@ -40,16 +46,51 @@ declare module "express-session" {
         capability: Capability;
         bandLevel: BandLevel;
     }
+}
     
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+
+app.use(session(
+        {   
+            secret:"not hard coded secret", 
+            cookie:{ maxAge: 60000 }
+        }
+    )
+);
+
+declare module "express-session" {
+    interface SessionData{
+        token: string;
+        isAdmin: boolean;
+    }
 }
 
 app.listen(3000, () => {
     console.log("Server listening on port 3000");
 });
 
-// Express Routes
+
+//express routes
 app.get("/", (req: Request, res: Response) => {
-    res.render("index");
+    res.render("login", {
+        title: "Login Or Sign Up",
+    });     
 });
 
-require('./controller/jobroleController')(app)
+require("./controller/jobroleController")(app);
+
+require("./controller/authController")(app);
+
+require("./controller/SignUpController")(app);
+
+require("./controller/adminController")(app);
+
+require("./controller/menuController")(app);
+
+const authMiddleware = require("./middleware/auth");
+app.use(authMiddleware);

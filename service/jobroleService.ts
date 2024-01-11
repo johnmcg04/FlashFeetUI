@@ -1,27 +1,27 @@
-import { JobRole } from "../model/jobrole";
+import { JobRole } from "../model/jobRole";
 
-const axios = require('axios');
-const jobRoleValidator = require('../validator/jobroleValidator')
+
+const axios = require("axios");
+
 
 module.exports.getJobroles = async function (): Promise<JobRole[]> {
     try {
-        const response = await axios.get('http://localhost:8080/api/job-role-list')
+        const response = await axios.get("http://localhost:8080/api/job-role-list");
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not get job roles')
+        throw new Error("Could not get job roles");
     }
-} 
 
 module.exports.getJobRole = async function (jobRole: string): Promise<JobRole> {
     try {
-        const response = await axios.get("http://localhost:8080/api/jobroles/" + jobRole )
+        const response = await axios.get("http://localhost:8080/api/jobroles/" + jobRole );
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error("Could not get job role")
+        throw new Error("Could not get job role");
     }
-}
+};
 
 module.exports.createJobRole = async function (jobrole: JobRole): Promise<string> {
     
@@ -31,18 +31,20 @@ module.exports.createJobRole = async function (jobrole: JobRole): Promise<string
           jobrole
         );
 
-        return response.data
+        return response.data;
     } catch (e) {
-            throw new Error('Could not create Job Role')
+            throw new Error("Could not create Job Role");
         }
-}
+};
 
-module.exports.deleteJobRole = async function (jobRole: String) {
+module.exports.deleteJobRole = async function (jobRole: string) {
     try {
-        const response = await axios.delete('http://localhost:8080/api/delete-job-role/' + jobRole)
+        const response = await axios.delete("http://localhost:8080/api/delete-job-role/" + jobRole);
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not delete job role')
+        throw new Error("Could not delete job role");
     }
-}
+};
+
+};
