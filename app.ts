@@ -59,7 +59,7 @@ app.get("/", (req: Request, res: Response) => {
 
 
 
-require('./controller/jobroleController')(app);
+require("./controller/jobroleController")(app);
 
 require("./controller/authController")(app);
 

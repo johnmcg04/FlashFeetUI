@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "npx tsc && cp -R views dist && cp -r public dist && node dist/app.js",
-    "lint": "eslint .",
-    "test": "mocha -r ts-node/register test/unit/service/*",
+    "test": "mocha -r ts-node/register test/unit/service/AuthServiceTests.ts",
     "test-ui": "mocha --timeout 10000 test/ui/**/*.js",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",

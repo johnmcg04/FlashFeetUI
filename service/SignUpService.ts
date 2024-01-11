@@ -1,13 +1,13 @@
-import { SignUp } from "../model/SignUp"
-import { Request, Response, Application } from "express"
+import { SignUp } from "../model/SignUp";
+import { Request, Response, Application } from "express";
 const axios = require("axios");
 
 export const signUp = async function (signUp: SignUp): Promise<void> {
   const passwordValidationResult = validateSignUpPassword(signUp.password);
-
+  
   if (passwordValidationResult.length > 0) {
     const errorMessage = "Invalid password. Please fix the following issues:\n" +
-      passwordValidationResult.join('\n');
+      passwordValidationResult.join("\n");
     throw new Error(errorMessage);
   }
 
