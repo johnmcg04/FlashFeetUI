@@ -9,7 +9,7 @@ module.exports = function(app: Application){
         let data: JobRole[] = [];
 
         try {
-            data = await jobroleService.getJobroles();
+            data = await jobroleService.getAllJobroles();
         } catch (e) {
             console.error(e);
         }
@@ -21,7 +21,7 @@ module.exports = function(app: Application){
         let data: string = "";
 
         try {
-            data = await jobroleService.getJobroles();
+            data = await jobroleService.getAllJobroles();
         } catch (e) {
             console.error(e);
         }
@@ -29,20 +29,17 @@ module.exports = function(app: Application){
         res.render("delete-job-role", {jobroles:data});
     });
 
-    app.post("/admin/delete-job-role", async (req: Request, res: Response) => {
+    app.post("/admin-delete-job-role", async (req: Request, res: Response) => {
         const data: string = req.body.jobRole;
-        let jobRole: string;
 
          try {
-            jobRole = await jobroleService.deleteJobRole(data);
+            await jobroleService.deleteJobRole(data);
 
-            res.redirect("/delete-job-role/" + jobRole);
+            res.redirect("/admin-menu");
         } catch (e) {
             console.error(e);
-
             res.locals.errormessage = e.message;
-
-            res.render("delete-job-role");
+            res.redirect("admin-menu");
         }
 
     });
@@ -60,18 +57,18 @@ module.exports = function(app: Application){
     });
 
     app.post("/admin-edit-job-role-selection", async (req: Request, res: Response) => {
-        req.session.jobRole= req.body.jobRole;
-        res.redirect("/edit-job-role");
+        req.session.jobRoleToUpdate = req.body.jobRole;
+        res.redirect("/admin-edit-job-role");
     });
 
-    app.get("/edit-job-role", async (req: Request, res: Response) => {
+    app.get("/admin-edit-job-role", async (req: Request, res: Response) => {
         let data: JobRole;
         let BandLevels: string[] = [];
         let Capabilities: string[] = [];
 
         try {
             data = await jobroleService.getJobRole(req.session.jobRoleToUpdate);
-            BandLevels = await jobroleService.getAllBandLevels();
+            BandLevels = await jobroleService.getAllBandLevels(); 
             Capabilities = await jobroleService.getAllCapabilities();
         } catch (e) {
             console.error(e);
@@ -82,7 +79,7 @@ module.exports = function(app: Application){
 
     app.post("/admin-edit-job-role", async (req: Request, res: Response) => {
         req.session.updatedJobRole = req.body;
-        res.redirect("/edit-job-role-confirmation");
+        res.redirect("/admin-edit-job-role-confirmation");
     });
 
     app.get("/admin-edit-job-role-confirmation", async (req: Request, res: Response) => {
@@ -98,7 +95,7 @@ module.exports = function(app: Application){
             req.session.updatedJobRole = undefined;
             req.session.jobRoleToUpdate = undefined;
 
-            res.redirect("/jobroles");
+            res.redirect("/admin-menu");
         } catch (e) {
             console.error(e);
 

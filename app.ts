@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { JobRole } from "./model/jobrole";
+import { JobRoleUpdate } from "./model/jobRoleUpdate";
 
 const express = require("express");
 const path = require("path");
@@ -34,9 +35,9 @@ app.use(session({secret: "NOT HARDCODED SECRET", cookie: {maxAge: 60000}}));
 
 declare module "express-session"{
     interface SessionData {
-        jobRoleToUpdate : string
-        updatedJobRole : string
-        jobRole: JobRole
+        jobRoleToUpdate : string;
+        updatedJobRole : JobRoleUpdate;
+        jobRole: JobRole;
         isAdmin: boolean;
         token : string;
     }
@@ -54,18 +55,18 @@ app.get("/", (req: Request, res: Response) => {
     });     
 });
 
+const authMiddleware = require("./middleware/auth");
 
 
-require("./controller/jobroleController")(app);
 
 require("./controller/authController")(app);
-
 require("./controller/SignUpController")(app);
+app.use(authMiddleware);
+
 
 require("./controller/adminController")(app);
-
+require("./controller/jobroleController")(app);
 require("./controller/menuController")(app);
-
-const authMiddleware = require("./middleware/auth");
 app.use(authMiddleware);
+
 
