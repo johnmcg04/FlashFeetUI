@@ -2,8 +2,16 @@ import { JobRole } from "../model/jobRole";
 
 module.exports.validateJobrole = function (jobrole: JobRole): string {
     if (jobrole.jobRole.length > 70) {
-        return "Job role greater than 50 characters";
+        return "Job role cannot be greater than 70 characters";
     }
+    
+    return null;
+};
 
+module.exports.validateJobrole = function (jobrole: JobRole): string {
+    if (jobrole.capability.length > 70) {
+        return "Job capability cannot be greater than 70 characters";
+    }
+    
     return null;
 };

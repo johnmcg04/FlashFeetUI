@@ -18,26 +18,33 @@
         <main class="container mt-4">
             <section id="products" class="mt-4">
                 <h2>Our Job Roles</h2>
+                
                 {% if jobroles and jobroles.length > 0 %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">JobRole</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for jobroles in jobroles %}
-                        <tr>
-                            <td>{{ jobroles.jobRole }}</td>
-                            <td><a href='jobroles/{{ jobroles.jobroles }}'>View</a></td>
-                        </tr>
-                        {% endfor %}
-
-                    </tbody>
-                </table>
-                {% else %}
-                There are no job roles.
-                {% endif %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Role Name</th>
+                        <th scope="col">Specification</th>
+                        <th scope="col">Capability</th>
+                        <th scope="col">Responsibilities</th>
+                        <th scope="col">Sharepoint Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for jobrole in jobroles %}
+                    <tr>
+                        <td>{{jobrole.roleName}}</td>
+                        <!-- <td>{{role.specification}}</td> --> <p>spaceHolder</p>
+                        <td>{{role.capabilityName}}</td>
+                        <!-- <td>{{role.responsibilities}}</td> --> <p>spaceHolder</p>
+                        <!-- <td><a href="{{role.sharepointLink}}">Sharepoint</a></td> --> <p>spaceHolder</p>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                There are no roles
+            {% endif %}
             </section>
         </main>
     </body>

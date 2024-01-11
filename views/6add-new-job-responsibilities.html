@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Add New Job Role</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="bg-dark text-light">
+            <div class="container">
+                <div class="row">
+                <div class="col-md-12">
+                    <h1>Add New Job Role</h1>
+                </div>
+            </div>
+            </div>
+        </header>
+        <main class="container mt-4">
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <p>Add The Responsibilities Of The New Job Role</p>
+                    <form action="/admin-add-new-job-responsibilities" method="post">
+                        <div class="form-group">
+                            <label for="responsibilities">Responsibilities</label>
+                            <input type="text" id="responsibilities" name="responsibilities" class="form-control" value="{{ responsibilities }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Next</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
