@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response, Application } from "express";
 import { Login } from "../model/auth";
 const authService = require("../service/AuthService");
