@@ -1,3 +1,7 @@
 /dist/*
 
+<<<<<<< HEAD
 test/ui/LoginTest.js
+=======
+test/ui/LoginTest.js
+>>>>>>> Pre-Production
