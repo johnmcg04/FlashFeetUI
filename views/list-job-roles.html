@@ -23,21 +23,21 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">JobRole</th>
-                            <th scope="col">JobSpecification</th>
-                            <th scope="col">JobCapability</th>
-                            <th scope="col">JobBandLevel</th>
-                            <th scope="col">JobResponsibilities</th>
+                            <th scope="col">Job Role</th>
+                            <th scope="col">Job Specification</th>
+                            <th scope="col">Job Capability</th>
+                            <th scope="col">Job Band Level</th>
+                            <th scope="col">Job Responsibilities</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for jobroles in jobroles %}
                         <tr>
-                            <td><a href='jobroles/{{ jobroles.jobroles }}'>{{ jobroles.jobRole }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobSpecification }}">{{ jobroles.jobSpecification }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobCapability }}">{{ jobroles.jobCapability }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobBandLevel}}">{{ jobroles.jobBandLevel }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.JobResponsibilities }}">{{ jobroles.jobResponsibilities }}</a></td>
+                            <td>{{ jobroles.jobRole }}</td>
+                            <td><a href="{{ jobroles.jobSpecification }}">View Specification</a></td>
+                            <td>{{ jobroles.capability }}</td>
+                            <td>{{ jobroles.bandLevel }}</td>
+                            <td>{{ jobroles.responsibilities }}</td>
                         </tr>
                         {% endfor %}
 
