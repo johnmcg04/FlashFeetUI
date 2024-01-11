@@ -2,9 +2,10 @@ import { JobRole } from "../model/jobrole";
 
 
 const axios = require('axios');
+const jobRoleValidator = require('../validator/jobroleValidator')
 
 
-module.exports.getJobroles = async function (): Promise<JobRole[]> {
+module.exports.getAllJobroles = async function (): Promise<JobRole[]> {
     try {
         const response = await axios.get(process.env.API_URL + 'job-role-list')
 
@@ -12,6 +13,11 @@ module.exports.getJobroles = async function (): Promise<JobRole[]> {
     } catch (e) {
         throw new Error('Could not get job roles')
     }
+
+} 
+
+
+
 
 } 
 

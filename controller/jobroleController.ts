@@ -18,10 +18,19 @@ module.exports = function(app: Application){
         let data: String;
 
         try {
+            data = await jobroleService.getAllJobroles()
+
             data = await jobroleService.getJobroles();
+
         } catch (e) {
             console.error(e);
         }
+
+
+        res.render('list-job-roles', {jobroles:data})
+    })
+}
+
 
         res.render('delete-job-role', {
             jobroles: data,
