@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { JobRole } from "./model/jobrole";
+import { JobRoleUpdate } from "./model/jobRoleUpdate";
 
 const express = require("express");
 const path = require("path");
@@ -32,6 +34,7 @@ app.use(session({secret: 'NOT HARDCODED SECRET', cookie: {maxAge: 60000}}));
 declare module "express-session"{
     interface SessionData {
         jobRoleToUpdate : String
+        updatedJobRole: JobRoleUpdate
     }
 }
 

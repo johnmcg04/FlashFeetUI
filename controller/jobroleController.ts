@@ -1,5 +1,6 @@
 import { Application, Request, Response } from "express";
 import { JobRole } from "../model/jobrole";
+import { JobRoleUpdate } from "../model/jobRoleUpdate";
 
 const jobroleService = require('../service/jobroleService')
 
@@ -37,7 +38,7 @@ module.exports = function(app: Application){
     })
 
     app.get('/edit-job-role', async (req: Request, res: Response) => {
-        let data: JobRole
+        let data: JobRoleUpdate
         let BandLevels: String[]
         let Capabilities: String[]
 
@@ -56,8 +57,34 @@ module.exports = function(app: Application){
     })
 
     app.post('/edit-job-role', async (req: Request, res: Response) => {
+        req.session.updatedJobRole = req.body
         console.log(req.body)
-        res.redirect('/edit-job-role')
+        console.log(req.session.updatedJobRole)
+        res.redirect('/edit-job-role-confirmation')
+    })
+
+    app.get('/edit-job-role-confirmation', async (req: Request, res: Response) => {
+
+        res.render('edit-job-role-confirmation', {JobRole:req.session.updatedJobRole})
+    })
+
+    app.post('/edit-job-role-confirmation', async (req: Request, res: Response) => {
+        const jobRoleToUpdate : String = req.session.jobRoleToUpdate
+        console.log(jobRoleToUpdate)
+        try {
+             await jobroleService.updateJobRole(req.session.updatedJobRole, jobRoleToUpdate)
+
+            req.session.updatedJobRole = undefined
+            req.session.jobRoleToUpdate = undefined
+
+            res.redirect('/jobroles')
+        } catch (e) {
+            console.error(e);
+
+            res.locals.errormessage = e.message
+
+        }
+
     })
 }
 
