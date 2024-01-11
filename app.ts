@@ -1,4 +1,5 @@
-import { Response, Request } from "express";
+import { Request, Response } from "express";
+import { JobRole } from "./model/jobRole";
 
 const express = require("express");
 const path = require("path");
@@ -27,21 +28,17 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true}));
 
+app.use(session({secret: "NOT HARDCODED SECRET", cookie: {maxAge: 60000}}));
 
-app.use(session(
-        {   
-            secret:"not hard coded secret", 
-            cookie:{ maxAge: 60000 }
-        }
-    )
-);
-
-declare module "express-session" {
-    interface SessionData{
-        token: string;
+declare module "express-session"{
+    interface SessionData {
+        jobRoleToUpdate : string
+        updatedJobRole : string
+        jobRole: JobRole
         isAdmin: boolean;
+        token : string;
     }
 }
 

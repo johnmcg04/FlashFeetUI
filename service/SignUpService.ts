@@ -14,7 +14,7 @@ export const signUp = async function (signUp: SignUp): Promise<void> {
   try {
     const response = await axios.post("http://localhost:8080/api/signup", signUp);
     // Handle the successful sign-up response as needed
-    
+    return response.data;
   } catch (e) {
     throw new Error("Could not sign up");
   }     

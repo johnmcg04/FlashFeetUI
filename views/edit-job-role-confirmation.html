@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Job Role</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="bg-dark text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Confirm Updated Job Role Details</h1>
+                    </div>
+                </div>
+            </div> 
+        </header>
+        <main class="container mt-4">
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    <h2>{{JobRole.jobRole}}</h2>
+                    {% if errormessage %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ errormessage }}
+                    </div>
+                    {% endif %}
+                    <form action="/edit-job-role-confirmation" method="post">
+                        <div class="form-group">
+                            <label for="jobRole">Job Role: {{JobRole.jobRole}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobSpecification">Job Specification: {{JobRole.jobSpecification}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="capability">Job Capability: {{JobRole.capability}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="bandLevel">Band Level: {{JobRole.bandLevel}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobFamily">Job Family: {{JobRole.jobFamily}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="responsibilities">Job Responsibilities: {{JobRole.responsibilities}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobSpecSummary">Job Specification Summary: {{ JobRole.jobSpecSummary }}</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
