@@ -18,12 +18,6 @@ app.use(express.json());
  
 app.use(express.urlencoded({ extended: true}));
 
-app.use(session({secret: "NOT HARDCODED SECRET", cookie: {maxAge: 60000}}));
-
-// Configure Nunjucks
-
-process.env["SESSION_SECRET"] = "your_secret_here";
-
 
 //configure nunjucks
 const appViews = path.join(__dirname, "/views/");
