@@ -1,5 +1,4 @@
 import { SignUp } from "../model/SignUp";
-import { Request, Response, Application } from "express";
 const axios = require("axios");
 
 export const signUp = async function (signUp: SignUp): Promise<void> {
