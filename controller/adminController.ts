@@ -1,6 +1,4 @@
 import { Request, Response, Application } from "express";
-import { Login } from "../model/auth";
-const authService = require("../service/AuthService");
 
 module.exports = function(app: Application) {
 

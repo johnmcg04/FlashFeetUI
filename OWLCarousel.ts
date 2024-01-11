@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // script.ts
 
 document.addEventListener("DOMContentLoaded", function () {

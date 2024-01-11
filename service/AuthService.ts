@@ -1,5 +1,4 @@
 import { Login } from "../model/auth";
-import { Request, Response, Application } from "express";
 const axios = require("axios");
 
 module.exports.login = async function (login: Login): Promise<void> {

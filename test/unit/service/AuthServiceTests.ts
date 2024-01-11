@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
 const chai = require("chai");  
