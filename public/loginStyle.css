@@ -154,6 +154,12 @@
 	background-position: 0% 50%;
   	transition: 0.6s;
 }
+
+.admin-menu-button:hover, .admin-menu-button:focus{
+	background-position: 0% 50%;
+  	transition: 0.6s;
+}
+
 /* Social media icons styles*/
 *{
   margin: 0;
