@@ -1,17 +1,17 @@
-var axios = require('axios');
-var MockAdapter = require('axios-mock-adapter');
-var chai = require('chai');  
+var axios = require("axios");
+var MockAdapter = require("axios-mock-adapter");
+var chai = require("chai");  
 const expect = chai.expect;
 
-var jobroleService = require('../../../service/jobroleService.ts');
+var jobroleService = require("../../../service/jobroleService.ts");
 var jobRole = {
     jobRole: "Test Engineer"
-}
+};
 
-describe('jobroleService', function () {
-    describe('getJobRoles', function () {
+describe("jobroleService", function () {
+    describe("getJobRoles", function () {
 
-        it('should return job roles from response', async () => {
+        it("should return job roles from response", async () => {
             var mock = new MockAdapter(axios);
     
             const data = [jobRole];
@@ -20,11 +20,11 @@ describe('jobroleService', function () {
     
             var results = await jobroleService.getJobroles();
     
-            expect(results[0]).to.deep.equal(jobRole)
-          })
+            expect(results[0]).to.deep.equal(jobRole);
+          });
 
-    })
-})
+    });
+});
 
 
 
