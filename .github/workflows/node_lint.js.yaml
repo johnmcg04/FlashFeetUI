@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "040-login-system" ]
-  pull_request:
     branches: [ "main", "Pre-Production" ]
+  pull_request:
+    branches: [ "Pre-Production" ]
 
 jobs:
   build:
