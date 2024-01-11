@@ -1,15 +1,15 @@
-import { Request, Response, Application } from "express"
-import { Login } from "../model/auth"
+import { Request, Response, Application } from "express";
+import { Login } from "../model/auth";
 const authService = require("../service/AuthService");
 
 module.exports = function(app: Application) {
 
-    app.get('/login', async (req: Request, res: Response) => {
-        res.render('login')
+    app.get("/login", async (req: Request, res: Response) => {
+        res.render("login");
     });
 
-    app.post('/login', async (req: Request, res: Response) => {
-        let data: Login = req.body
+    app.post("/login", async (req: Request, res: Response) => {
+        const data: Login = req.body;
 
         try{
             req.session.token = await authService.login(data); //checking is valid log in returns UUID token
@@ -18,12 +18,12 @@ module.exports = function(app: Application) {
             redirectToMenu(req.session.isAdmin, res);
         }
             catch(e){
-            console.log(e)
-            res.locals.errormessage = e.message
-            res.render('login', req.body)
+            console.log(e);
+            res.locals.errormessage = e.message;
+            res.render("login", req.body);
         }
     });
-}
+};
 function redirectToMenu(isAdmin: any, res: Response<any, Record<string, any>>) {
     try {
         if (isAdmin == true) { 

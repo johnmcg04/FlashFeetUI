@@ -1,11 +1,11 @@
-var axios = require('axios');
-var MockAdapter = require('axios-mock-adapter');
-var chai = require('chai');  
-var expect = chai.expect;
-import { describe, it, beforeEach, afterEach } from 'mocha';
+const axios = require("axios");
+const MockAdapter = require("axios-mock-adapter");
+const chai = require("chai");  
+const expect = chai.expect;
+import { describe, it, beforeEach, afterEach } from "mocha";
 
 
-describe('Login System - AuthService Class', () => {
+describe("Login System - AuthService Class", () => {
     let mockAxios : any;
 
     beforeEach(() => {
@@ -16,31 +16,31 @@ describe('Login System - AuthService Class', () => {
         mockAxios.restore();
     });
 
-    it('should return valid response if credentials are valid', async () => {
+    it("should return valid response if credentials are valid", async () => {
         // Arrange
-        const mockUser = { username: 'testuser', password: 'testpass' };
-        const mockResponse = { status: 'Success', message: 'Login Successful' };
+        const mockUser = { username: "testuser", password: "testpass" };
+        const mockResponse = { status: "Success", message: "Login Successful" };
 
-        mockAxios.onPost('/login', mockUser).reply(200, mockResponse);
+        mockAxios.onPost("/login", mockUser).reply(200, mockResponse);
 
         // Act
-        const response = await axios.post('/login', mockUser);
+        const response = await axios.post("/login", mockUser);
 
         // Assert
         expect(response.status).to.equal(200);
         expect(response.data).to.deep.equal(mockResponse);
     });
 
-    it('should return error message if credentials are invalid', async () => {
+    it("should return error message if credentials are invalid", async () => {
         // Arrange
-        const mockUser = { username: 'testuser', password: 'wrongpass' };
-        const mockResponse = { status: 'Error', message: 'Invalid Credentials' };
+        const mockUser = { username: "testuser", password: "wrongpass" };
+        const mockResponse = { status: "Error", message: "Invalid Credentials" };
 
-        mockAxios.onPost('/login', mockUser).reply(401, mockResponse);
+        mockAxios.onPost("/login", mockUser).reply(401, mockResponse);
 
         // Act
         try {
-            await axios.post('/login', mockUser);
+            await axios.post("/login", mockUser);
         } catch (error) {
             // Assert
             expect(error.response.status).to.equal(401);

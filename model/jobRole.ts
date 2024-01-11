@@ -1,3 +1,5 @@
 export class JobRole {
-    jobRole?: String
+
+    jobRole: string;
+
 }
