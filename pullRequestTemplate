@@ -4,6 +4,7 @@ Pull Request Checklist
 Please follow all these rules before merging your branch.
 
  Must reference a ticket
+ Screenshot on each ticket must be used
  Must implement tests where appropirate
  Must have useful documentation
  Must adhere to the naming conventions
