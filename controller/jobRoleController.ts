@@ -26,7 +26,7 @@ module.exports = function(app: Application){
             console.error(e);
         }
 
-        res.render("list-job-roles", {jobroles:data});
+        res.render("delete-job-role", {jobroles:data});
     });
 
     app.post("/delete-job-role", async (req: Request, res: Response) => {
