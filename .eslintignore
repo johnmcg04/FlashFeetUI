@@ -1,7 +1,9 @@
 /dist/*
 
-*/eslintrc.js
+test/unit/service/JobRoleServiceTest.js
 
-*/index.js
+test/ui/LoginTest.js
 
-*/app.ts
+test/ui/SignUpTests.js
+
+test/ui/LoginTest.js

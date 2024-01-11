@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { JobRole } from "./model/jobrole";
-import { JobRoleUpdate } from "./model/jobRoleUpdate";
+import { JobRole } from "./model/jobRole";
 
 const express = require("express");
 const path = require("path");
-const session = require('express-session')
 const nunjucks = require("nunjucks");
+const session = require("express-session");
+process.env["SESSION_SECRET"] = "your_secret_here";
 
 const app = express();
 
-// Configure Nunjucks
+//configure nunjucks
 const appViews = path.join(__dirname, "/views/");
 
 const nunjucksConfig = {
@@ -20,21 +20,25 @@ const nunjucksConfig = {
 
 nunjucks.configure(appViews, nunjucksConfig);
 
-// Configure Express
+//configure express
+
 app.set("view engine", "html");
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
-app.use(express.json())
+app.use(express.json());
 
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: true}));
 
-app.use(session({secret: 'NOT HARDCODED SECRET', cookie: {maxAge: 60000}}));
+app.use(session({secret: "NOT HARDCODED SECRET", cookie: {maxAge: 60000}}));
 
 declare module "express-session"{
     interface SessionData {
-        jobRoleToUpdate : String
-        updatedJobRole: JobRoleUpdate
+        jobRoleToUpdate : string
+        updatedJobRole : string
+        jobRole: JobRole
+        isAdmin: boolean;
+        token : string;
     }
 }
 
@@ -42,9 +46,26 @@ app.listen(3000, () => {
     console.log("Server listening on port 3000");
 });
 
-// Express Routes
+
+//express routes
 app.get("/", (req: Request, res: Response) => {
-    res.render("index");
+    res.render("login", {
+        title: "Login Or Sign Up",
+    });     
 });
 
-require('./controller/jobroleController')(app)
+
+
+require("./controller/jobroleController")(app);
+
+require("./controller/authController")(app);
+
+require("./controller/SignUpController")(app);
+
+require("./controller/adminController")(app);
+
+require("./controller/menuController")(app);
+
+const authMiddleware = require("./middleware/auth");
+app.use(authMiddleware);
+

@@ -1,13 +1,13 @@
-import { JobRoleUpdate } from "../model/jobRoleUpdate";
+import { JobRole } from "../model/jobRole";
 
-module.exports.validateJobrole = function (jobrole: JobRoleUpdate): string {
-    if (jobrole.jobRole.length > 50) {
+module.exports.validateJobrole = function (jobRole: JobRole): string {
+    if (jobRole.jobRole.length > 50) {
         return "Job role greater than 50 characters";
     }
 
-    if (jobrole.jobSpecification.length > 500) {
+    if (jobRole.jobSpecification.length > 500) {
         return "Specification link greater than 500 characters";
     }
 
-    return null
-}
+    return "";
+};

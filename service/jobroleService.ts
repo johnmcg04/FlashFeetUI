@@ -1,64 +1,67 @@
-import { JobRoleUpdate } from "../model/jobRoleUpdate";
-import { JobRole } from "../model/jobrole";
+import { JobRole } from "../model/jobRole";
 
-
-const axios = require('axios');
-const jobRoleUpdateValidator = require('../validator/jobroleUpdateValidator')
+const axios = require("axios");
+const jobRoleUpdateValidator = require("../validator/jobroleUpdateValidator");
 
 module.exports.getAllJobroles = async function (): Promise<JobRole[]> {
     try {
-        const response = await axios.get('http://localhost:8080/api/job-role-list')
+        const response = await axios.get("http://localhost:8080/api/job-role-list");
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not get job roles')
+        throw new Error("Could not get job roles");
     }
-} 
-module.exports.getJobRole = async function (jobRole: String): Promise<JobRole> {
+}; 
+module.exports.getJobRole = async function (jobRole: string): Promise<JobRole> {
     try {
-        const response = await axios.get('http://localhost:8080/api/job-entry/' + jobRole)
+        const response = await axios.get("http://localhost:8080/api/job-entry/" + jobRole);
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not get job roles')
+        throw new Error("Could not get job roles");
     }
-} 
-module.exports.getAllCapabilities = async function (): Promise<String[]> {
+}; 
+module.exports.getAllCapabilities = async function (): Promise<string[]> {
     try {
-        const response = await axios.get('http://localhost:8080/api/capability-list')
+        const response = await axios.get("http://localhost:8080/api/capability-list");
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not get capabilities')
+        throw new Error("Could not get capabilities");
     }
-} 
-module.exports.getAllBandLevels = async function (): Promise<String[]> {
+}; 
+module.exports.getAllBandLevels = async function (): Promise<string[]> {
     try {
-        const response = await axios.get('http://localhost:8080/api/bandlevel-list')
+        const response = await axios.get("http://localhost:8080/api/bandlevel-list");
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not get band levels')
+        throw new Error("Could not get band levels");
     }
-} 
-module.exports.updateJobRole  = async function (updatedJobRole: JobRoleUpdate, jobRoleToUpdate: String): Promise<String> {
-    console.log("service")
-    console.log(updatedJobRole)
-    console.log(jobRoleToUpdate)
+}; 
+module.exports.updateJobRole  = async function (updatedJobRole: JobRole, jobRoleToUpdate: string): Promise<string> {
     const error: string = jobRoleUpdateValidator.validateJobrole(updatedJobRole);
-    console.log(error);
 
     if(error){
-        throw new Error(error)
+        throw new Error(error);
     }
 
     try {
-        console.log
-        const response = await axios.put('http://localhost:8080/api/job-entry/' + jobRoleToUpdate, updatedJobRole)
+        const response = await axios.put("http://localhost:8080/api/job-entry/" + jobRoleToUpdate, updatedJobRole);
 
-        return response.data
+        return response.data;
     } catch (e) {
-        throw new Error('Could not update job entry')
+        throw new Error("Could not update job entry");
     }
-} 
+};
 
+module.exports.deleteJobRole = async function (jobRole: string) {
+    try {
+        const response = await axios.delete("http://localhost:8080/api/delete-job-role/" + jobRole);
+
+        return response.data;
+    } catch (e) {
+        throw new Error("Could not delete job role");
+    }
+
+};
