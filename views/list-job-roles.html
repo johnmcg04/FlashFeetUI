@@ -23,17 +23,17 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">JobRole</th>
-                            <th scope="col">JobSpecification</th>
-                            <th scope="col">JobCapability</th>
+                            <th scope="col">Job Role</th>
+                            <th scope="col">Job Role Specification</th>
+                            <th scope="col">Job Role Capability</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for jobroles in jobroles %}
                         <tr>
-                            <td><a href='jobroles/{{ jobroles.jobroles }}'>{{ jobroles.jobRole }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobSpecification }}">{{ jobroles.jobSpecification }}</a></td>
-                            <td><a href="jobroles/{{ jobroles.jobCapability }}">{{ jobroles.jobCapability }}</a></td>
+                            <td>{{ jobroles.jobRole }}</td>
+                            <td><a href="{{ jobroles.jobSpecification }}">View Specification</a></td>
+                            <td>{{ jobroles.capability }}</td>
                         </tr>
                         {% endfor %}
 
