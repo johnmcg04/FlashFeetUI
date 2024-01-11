@@ -1,4 +1,4 @@
-name: Node.js LinterCI
+name: CI
 
 on:
   push:
