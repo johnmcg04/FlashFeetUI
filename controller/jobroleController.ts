@@ -208,7 +208,7 @@ module.exports = function(app: Application){
         bandLevel: req.session.bandLevel,
         capability: req.session.capability
       });
-        res.render("list-job-roles", {jobroles:data});
+        res.render("admin-menu", {jobroles:data});
     });
 
 
@@ -225,7 +225,7 @@ module.exports = function(app: Application){
             req.session.bandLevel = undefined; 
             req.session.capability = undefined;
 
-            res.redirect("/menu");
+            res.redirect("/admin-menu");
         }
         catch(e){
             console.log(e);
