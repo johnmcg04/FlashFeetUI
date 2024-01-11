@@ -1,4 +1,4 @@
-import { JobRole } from "../model/jobRole";
+import { JobRole } from "../model/jobrole";
 
 module.exports.validateJobrole = function (jobRole: JobRole): string {
     

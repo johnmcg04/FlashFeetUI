@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { JobRole } from "./model/jobRole";
+import { JobRole } from "./model/jobrole";
 
 const express = require("express");
 const path = require("path");
