@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { JobRole } from "./model/jobrole";
 import { JobRoleUpdate } from "./model/jobRoleUpdate";
+import { Capability } from "./model/capability";
+import { BandLevel } from "./model/bandLevel";
 
 const express = require("express");
 const path = require("path");
@@ -40,6 +42,9 @@ declare module "express-session"{
         jobRole: JobRole;
         isAdmin: boolean;
         token : string;
+        jobrole: JobRole;
+        capability: Capability;
+        bandLevel: BandLevel;
     }
 }
 

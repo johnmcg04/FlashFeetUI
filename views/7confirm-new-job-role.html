@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Add New Job Role</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="bg-dark text-light">
+            <div class="container">
+                <div class="row">
+                <div class="col-md-12">
+                    <h1>Add New Job Role</h1>
+                </div>
+            </div>
+            </div>
+        </header>
+        <main class="container mt-4">
+            <section id="addNewJobTitleHeader" class="mt-4">
+                <h2>Please confirm the following information is correct</h2>
+            </section>
+            <section id="form" class="bg-light py-5">
+                <div class="container">
+                    {% if errormessage %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ errormessage }}
+                    </div>
+                    {% endif %}
+                    <form action="/admin-confirm-new-job-role" method="post">
+                        <div>
+                            <label for="jobRole">Job Role: {{ jobRole.jobRole }}</label>
+                        </div>
+                        <div>
+                            <label for="JobRole">Specification: {{ jobRole.jobSpecSummary }}</label>
+                        </div>
+                        <div>
+                            <label for="jobSpecification">SharePoint link: {{ jobRole.jobSpecification }}</label>
+                        </div>
+                        <div>
+                            <label for="Capability">Capability: {{ capability.capability }}</label>
+                        </div>
+                        <div>
+                            <label for="BandLevel">Band Level: {{ bandLevel.bandLevel }}</label>
+                        </div>
+                        <div>
+                            <label for="JobFamily">Job Family: {{ jobRole.jobFamily }}</label>
+                        </div>
+                        <div>
+                            <label for="Responsibilities">Responsibilities: {{ jobRole.responsibilities }}</label>
+                        </div class="container">
+                        <button type="submit" class="btn btn-primary">Confirm Job Role</button>
+
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
