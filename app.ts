@@ -42,7 +42,7 @@ declare module "express-session"{
         jobRole: JobRole;
         isAdmin: boolean;
         token : string;
-        jobrole: JobRole;
+        jobrole?: JobRole;
         capability: Capability;
         bandLevel: BandLevel;
     }

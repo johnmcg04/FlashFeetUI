@@ -115,7 +115,7 @@ module.exports = function(app: Application){
     app.get("/admin-add-new-job-role", async (req: Request, res: Response) => {
 
         if (!req.session.jobrole) {
-            req.session.jobrole = undefined;
+            req.session.jobrole = {};
         }
 
         res.render("1add-new-job-role");
@@ -213,7 +213,7 @@ module.exports = function(app: Application){
         let data: JobRole[] = [];
 
             try {
-                data = await jobroleService.getJobroles();
+                data = await jobroleService.getAllJobroles();
 
                 uniqueJobFamilies = Array.from(new Set(data.map(JobRole => JobRole.jobFamily))); 
 
@@ -266,7 +266,6 @@ module.exports = function(app: Application){
         bandLevel: req.session.bandLevel,
         capability: req.session.capability
       });
-        res.render("admin-menu", {jobroles:data});
     });
 
 
@@ -275,6 +274,8 @@ module.exports = function(app: Application){
         const data: JobRole = req.session.jobrole;
         data.bandLevel = req.session.bandLevel.bandLevel;
         data.capability = req.session.capability.capability;
+
+        jobroleService.createJobRole(data);
 
 
         try{
