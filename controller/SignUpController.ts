@@ -13,6 +13,11 @@ module.exports = function(app: Application) {
 
         try{
             req.session.token = await signUpService.signUp(data); //checking is valid sign up
+
+            // if they clicked the check box for face id redirect to signup/faceid
+            // call method for hitting endpoint on python, this will return true or false
+            // if true redirect to login else redirect back to signup and ask to try again
+
             res.redirect("/login");
         }
             catch(e){
