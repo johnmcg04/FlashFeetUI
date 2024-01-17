@@ -19,6 +19,24 @@ export const signUp = async function (signUp: SignUp): Promise<void> {
   }     
 };
 
+export const signUpFaceId = async function (signUp: SignUp): Promise<void> {
+  const passwordValidationResult = validateSignUpPassword(signUp.password);
+
+  if (passwordValidationResult.length > 0) {
+    const errorMessage = "Invalid password. Please fix the following issues:\n" +
+      passwordValidationResult.join("\n");
+    throw new Error(errorMessage);
+  }
+
+  try {
+    const response = await axios.post("http://localhost:8080/api/signupWithFaceId", signUp); //not hitting end point
+    // Handle the successful sign-up response as needed
+    return response.data;
+  } catch (e) {
+    throw new Error("Could not sign up with face id");
+  }     
+};
+
 // Password validation function
 function validateSignUpPassword(password: string): string[] {
   const errors: string[] = [];

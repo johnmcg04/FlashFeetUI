@@ -12,12 +12,10 @@ module.exports = function(app: Application) {
     app.post("/signup", async (req: Request, res: Response) => {
         const data: SignUp = req.body;
         try {
-            req.session.token = await signUpService.signUp(data); //checking is valid sign up
-        
             // Check if the user has opted for Face ID
             if (req.body.faceId) {
+                req.session.token = await signUpService.signUpFaceId(data);
                 const faceIdResult = await faceIdService.signUpFaceId(data.username); // Assuming signUpFaceId hits the Python endpoint and returns true or false
-        
                 if (faceIdResult) {
                     setTimeout(() => {
                         res.redirect("/login");
@@ -27,6 +25,7 @@ module.exports = function(app: Application) {
                     res.render("signup", req.body);
                 }
             } else {
+                req.session.token = await signUpService.signUp(data); 
                 res.redirect("/login");
             }
         } catch(e) {
