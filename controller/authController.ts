@@ -11,20 +11,26 @@ module.exports = function(app: Application) {
 
     app.post("/login", async (req: Request, res: Response) => {
         const data: Login = req.body;
-
-        try{
+        try {
             req.session.token = await authService.login(data); //checking is valid log in returns UUID token
-            //let isAdmin = await authService.chkAdmin(req.session.token); //checking if token is admin returns bool
             req.session.isAdmin = await authService.chkAdmin(req.session.token);
-            redirectToMenu(req.session.isAdmin, res);
-        }
-            catch(e){
+    
+            // Verify the face id
+            const isFaceIdVerified = await authService.verifyFaceId(data.username);
+    
+            if (isFaceIdVerified) {
+                redirectToMenu(req.session.isAdmin, res);
+            } else {
+                throw new Error("Face ID verification failed");
+            }
+        } catch(e) {
             console.log(e);
             res.locals.errormessage = e.message;
             res.render("login", req.body);
         }
-    });
+    });    
 };
+
 function redirectToMenu(isAdmin: any, res: Response<any, Record<string, any>>) {
     try {
         if (isAdmin == true) { 

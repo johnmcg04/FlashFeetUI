@@ -45,6 +45,7 @@
                 <input type="password" id="password" name="password" class="form-control" placeholder="Enter your Password" required>
               </div>
               <button type="submit" id="login" class="btn-block login-button" style="border-radius: 20px; margin-top: 20px">Login</button>
+              <div id="message"></div>
               <div class="strike">
                 <span>OR</span>
               </div>
@@ -113,6 +114,12 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
         <script src="OWLCarousel.ts"></script>
+
+        <script>
+          document.getElementById('login').addEventListener('click', function() {
+          document.getElementById('message').innerText = 'Please scan your face to let us know it is you logging in!';
+          });
+        </script>
       
 </body>
 </html>
