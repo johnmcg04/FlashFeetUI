@@ -20,33 +20,38 @@ module.exports.chkAdmin = async function (token: string): Promise<void> {
     }
 };
 
-module.exports.verifyFaceId = async function (username: string) {
+module.exports.verifyFaceId = async function (username :string) {
     try {
-            // User has a face id linked, verify it
-            const isFaceIdValid = await axios.get("http://localhost:3003/login/faceid", { params: { username: username } });
-            
-            if (isFaceIdValid) {
-                return true;
-            }
-            else return false;
+        // User has a face id linked, verify it
+        const response = await axios.post("http://localhost:3000/login/faceid", { username });
+        console.log("after response");
+        // Check the result from the backend
+        if (response.data.result) {
+            return true;
         }
-        catch (e) {
+        else return false;
+    }
+    catch (e) {
         throw new Error();
     }
 };
 
+
+
 module.exports.hasFaceIdLinkedToAccount = async function (username: string) {
     try {
         // Check if the user has a face id linked to their account
-        const hasFaceIdLinked = await axios.post("http://localhost:8080/api/checkIfUserHasFaceIdLinked", { username: username });
+        const hasFaceIdLinked = await axios.post("http://localhost:8080/api/checkIfUserHasFaceIdLinked/" + username);
         
         if(hasFaceIdLinked){
             return true;
         }
 
         return false;
-    } catch (e) {
-        throw new Error("Sorry SQL Exception");
+    }
+    catch (e) {
+        console.error(e);
+        throw e;
     }
 };
 
