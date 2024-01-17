@@ -1,6 +1,7 @@
 import { Request, Response, Application } from "express";
 import { SignUp } from "../model/SignUp";
 const signUpService = require("../service/SignUpService");
+const faceIdService = require("../service/FaceIdService");
 
 module.exports = function(app: Application) {
 
@@ -10,20 +11,27 @@ module.exports = function(app: Application) {
 
     app.post("/signup", async (req: Request, res: Response) => {
         const data: SignUp = req.body;
-
-        try{
+        try {
             req.session.token = await signUpService.signUp(data); //checking is valid sign up
-
-            // if they clicked the check box for face id redirect to signup/faceid
-            // call method for hitting endpoint on python, this will return true or false
-            // if true redirect to login else redirect back to signup and ask to try again
-
-            res.redirect("/login");
-        }
-            catch(e){
+            
+            // Check if the user has opted for Face ID
+            if (req.body.faceId) {
+                const faceIdResult = await faceIdService.signUpFaceId(data.username); // Assuming signUpFaceId hits the Python endpoint and returns true or false
+    
+                if (faceIdResult) {
+                    res.redirect("/login");
+                } else {
+                    res.locals.errormessage = "Face ID registration failed. Please try again.";
+                    res.render("signup", req.body);
+                }
+            } else {
+                res.redirect("/login");
+            }
+        } catch(e) {
             console.log(e);
             res.locals.errormessage = e.message;
             res.render("signup", req.body);
         }
     });
 };
+
