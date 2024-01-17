@@ -3,14 +3,12 @@ const axios = require("axios");
 const faceIdService = {
     signUpFaceId: async (username : string) => {
         try {
-            console.log("getting into service method");
-            
-            const response = await axios.post("/signup/faceid", {
+            const response = await axios.post("http://localhost:3002/signup/faceid", {
                 username
             });
-            // Assuming the Python endpoint returns a JSON response with a 'success' field
-            return response.data.success;
-            } 
+            // Assuming the Python endpoint returns a true or false value
+            return response.data;
+        } 
         catch (error) {
             console.error(error);
             return false;

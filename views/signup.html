@@ -45,7 +45,8 @@
                 <input type="password" id="signup_password" name="password" class="form-control" placeholder="Enter your Password" value="{{ password }}" required>
               </div>
               <input type="checkbox" id="faceId" name="faceId">
-              <label for="faceId">Sign up with Face ID</label><br>
+              <label for="faceId">Use Face ID for 2 Factor Authentication</label><br>
+              <div id="countdown" style="font-size: 30px; text-align: center; margin-bottom: 20px;"></div>
               <button type="submit" id="signup" class="btn-block login-button" style="border-radius: 20px; margin-top: 20px">Sign Up</button>
             </form>
           </div>
@@ -130,6 +131,27 @@
                 });
             });
         </script>
+        
+        <script>
+        document.getElementById('signup').addEventListener('click', function() {
+            var countdownElement = document.getElementById('countdown');
+            var countdownValue = 5;
+            countdownElement.innerText = countdownValue;
+        
+            var countdownInterval = setInterval(function() {
+                countdownValue--;
+                if (countdownValue >= 0) {
+                    countdownElement.innerText = countdownValue;
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerText = '';
+                }
+            }, 1000);
+        });
+        </script>
+        
+
+
       
 </body>
 </html>
