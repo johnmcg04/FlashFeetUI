@@ -14,21 +14,40 @@ module.exports = function(app: Application) {
         try {
             req.session.token = await authService.login(data); //checking is valid log in returns UUID token
             req.session.isAdmin = await authService.chkAdmin(req.session.token);
-    
-            // Verify the face id
-            const isFaceIdVerified = await authService.verifyFaceId(data.username);
-    
-            if (isFaceIdVerified) {
-                redirectToMenu(req.session.isAdmin, res);
-            } else {
-                throw new Error("Face ID verification failed");
+
+            try{
+                console.log(data.username);
+                const checkIfUserHasFaceIdLinked = await authService.hasFaceIdLinkedToAccount(data.username);
+                console.log("after checkIfUserHasFaceIdLinked");
+                if(checkIfUserHasFaceIdLinked){
+                    console.log("after if");
+                    const isFaceIdValid = await authService.verifyFaceId(data.username);
+                    console.log("after isFaceIdValid");
+
+                    if(isFaceIdValid){
+                        redirectToMenu(req.session.isAdmin, res);
+                    }
+                    else if(!isFaceIdValid){
+                        throw new Error("Could not verify Face ID");
+                    }
+                    
+                }
+                if(!checkIfUserHasFaceIdLinked){
+                    redirectToMenu(req.session.isAdmin, res);
+                }
             }
+            catch (e) {
+                console.error(e);
+                throw e;
+            }
+    
         } catch(e) {
             console.log(e);
             res.locals.errormessage = e.message;
             res.render("login", req.body);
         }
-    });    
+    });
+     
 };
 
 function redirectToMenu(isAdmin: any, res: Response<any, Record<string, any>>) {
@@ -37,7 +56,7 @@ function redirectToMenu(isAdmin: any, res: Response<any, Record<string, any>>) {
             // If admin -> redirect to admin-menu
             res.redirect("/admin-menu");
         } else { // If user -> redirect to menu
-            res.redirect("menu");
+            res.redirect("/menu");
         }
     } catch (e) {
         throw new Error("Could not redirect");
