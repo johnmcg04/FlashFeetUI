@@ -23,19 +23,16 @@ module.exports.chkAdmin = async function (token: string): Promise<void> {
 module.exports.verifyFaceId = async function (username :string) {
     try {
         // User has a face id linked, verify it
-        const response = await axios.post("http://localhost:3000/login/faceid", { username });
-        console.log("after response");
+        const response = await axios.get("http://localhost:3001/login/faceid/" + username);
+        console.log("Inside of verify face id after response");
+
         // Check the result from the backend
-        if (response.data.result) {
-            return true;
-        }
-        else return false;
+        return response.data;
     }
     catch (e) {
         throw new Error();
     }
 };
-
 
 
 module.exports.hasFaceIdLinkedToAccount = async function (username: string) {
